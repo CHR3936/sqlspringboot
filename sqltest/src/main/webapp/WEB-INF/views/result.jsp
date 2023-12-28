@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post" action="send.do">
-        <input type="text" name="mail" placeholder="받는 사람 입력"><br>
-        <input type="submit" value="전송">
-    </form>
+
+결과 페이지: ${result}
+
 </body>
 </html>
