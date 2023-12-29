@@ -10,7 +10,7 @@
 
 
 <script>
-	location.href="mm"
+	location.href="memberjoinform"
 </script>
 
 

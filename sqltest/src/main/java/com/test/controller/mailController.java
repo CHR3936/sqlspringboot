@@ -10,17 +10,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.test.configuration.MailConfiguration;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 
 @Controller
-@RequiredArgsConstructor
-
 public class mailController {
 	
+	@Autowired
+	private MailConfiguration mailcon;
 	
-	
+		
 	@RequestMapping("mm")
 	public String sendform() {
 		return "Mail";
@@ -29,22 +32,24 @@ public class mailController {
 	
 	
 	@RequestMapping("send.do")
-	public String send(@RequestParam("mail") String mail,
+	@ResponseBody
+	public Integer send(@RequestParam("mail") String mail,
 					   Model model) {
 
 		Random random = new Random();
-		int a = random.nextInt(100);
-
+		int a = random.nextInt(888888) + 111111;
+		
+		
 		// Mail Server 설정
-				String charSet = "utf-8";
-				String hostSMTP = "smtp.naver.com";
-				String hostSMTPid = "gpfus3936@naver.com";
-				String hostSMTPpwd = "0000000*"; 	// 비밀번호 입력
+		String charSet = mailcon.getCharSet();
+		String hostSMTP = mailcon.getHostSMTP();
+		String hostSMTPid = mailcon.getHostSMTPid();
+		String hostSMTPpwd = mailcon.getHostSMTPpwd();
 
-				// 보내는 사람 EMail, 제목, 내용
-				String fromEmail = "gpfus3936@naver.com";
-				String fromName = "친절한 홍길동씨";
-				String subject = "Overflow인증메일입니다.";
+		// 보내는 사람 EMail, 제목, 내용
+		String fromEmail = mailcon.getFromEmail();
+		String fromName = "친절한 홍길동씨";
+		String subject = "Overflow인증메일입니다.";
 
 		// 받는 사람 E-Mail 주소
 		//String mail = model;
@@ -68,8 +73,7 @@ public class mailController {
 		} catch (Exception e) {
 			System.out.println(e);
 		}		
-		model.addAttribute("result", "good~!!\n 등록된 E-Mail 확인");
 
-		return "result";
+		return a;
 	}
 }
