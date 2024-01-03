@@ -33,7 +33,7 @@
 		<tr align = "center">
 			<td>
 				<c:out value="${num}"/>
-				<c:set var="num" value ="${num -1}"/>
+				<c:set var="num" value ="${num-1}"/>
 			</td>
 			<td>
 				<a href = "commcontent?no=${t.no}&page=${page}">${t.title }</a>

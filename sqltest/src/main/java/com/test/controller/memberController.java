@@ -53,5 +53,13 @@ public class memberController {
 		model.addAttribute("result", result);
 		return "commlist";
 	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:commlist";
+	}
 }
 

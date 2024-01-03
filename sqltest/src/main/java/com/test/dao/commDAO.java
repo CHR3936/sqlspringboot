@@ -25,9 +25,9 @@ public class commDAO {
 		return session.selectOne("getCommCount");
 	}
 
-	public List<memberDTO> getCommList(int page) {
+	public List<memberDTO> getCommList(int start) {
 		// TODO Auto-generated method stub
-		return session.selectList("getCommList", page);
+		return session.selectList("getCommList", start);
 	}
 
 	public void getUpdateCount(int no) {

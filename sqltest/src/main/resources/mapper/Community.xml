@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="getCommList" parameterType="int" resultType="comm">
-		select * from community order by no desc limit #{startRow},10
+		select * from community order by no desc limit #{start},10
 	</select>
 	
 	<update id="commUpdateCount" parameterType="int">

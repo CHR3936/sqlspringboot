@@ -1,13 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="js/memberjoin.js"></script>
-<style>
 @charset "UTF-8";
 
 body{
@@ -62,11 +52,6 @@ body{
    }
 }
 
-div{
-	margin : 10px;
-	position: relative;
-}
-
 
 form{
   width:100%;
@@ -117,21 +102,6 @@ form{
         width:90%;
         max-width:680px;
         height:50px;
-        margin: 0 auto;
-        border-radius:8px;
-        border:3;
-        background: rgba(#0f132a,.1);
-        color : rgba(#0f132a,.3);
-        padding:0 0 0 15px;
-        font-size:14px;
-        font-family: 'Montserrat', sans-serif;
-       
-     }
-	.nickinput{
-        display:block;
-        width:90%;
-        max-width:680px;
-        height:50px;
         margin:0 auto;
         border-radius:8px;
         border:3;
@@ -140,40 +110,11 @@ form{
         padding:0 0 0 15px;
         font-size:14px;
         font-family: 'Montserrat', sans-serif;
-       
-     }
-	.passinput{
-        display:block;
-        width:90%;
-        max-width:680px;
-        height:50px;
-        margin:0 auto;
-        border-radius:8px;
-        border:3;
-        background: rgba(#0f132a,.1);
-        color : rgba(#0f132a,.3);
-        padding:0 0 0 15px;
-        font-size:14px;
-        font-family: 'Montserrat', sans-serif;
-       
-     }
-	.passcheckinput{
-        display:block;
-        width:90%;
-        max-width:680px;
-        height:50px;
-        margin:0 auto;
-        border-radius:8px;
-        border:3;
-        background: rgba(#0f132a,.1);
-        color : rgba(#0f132a,.3);
-        padding:0 0 0 15px;
-        font-size:14px;
-        font-family: 'Montserrat', sans-serif;
+        
        
      }
 
-  .memberjoin{
+  .signin__btn{
      background:#1285C4;
      color:white;
      display:block;
@@ -195,10 +136,8 @@ form{
   }
 }
 
-.mconfirm{
-	position: absolute;
-	top : 118px;
-}
+
+
 
 .google__btn{
    display:block;
@@ -238,46 +177,4 @@ form{
 }
 
 
-</style>
-</head>
-<body>
-<div class ="container">
 
-
-  <a href = "commlist" class = "head" >community</a>
-
-	<form id = "myform" action="memberjoin" method="post" modelAttribute="member">
-		<div>
-			<input type="email" name="id" id="email" class="emailinput" placeholder="이메일" />
-			<font id ="emailcheck"/>
-		</div>
-			<input type="button" value="메일인증" id="emailcheck" class = "mconfirm">		
-		<div>
-			<input type="text" id="emaildetail"> 
-			<input type="button" value="인증확인" id="econfirm" >
-		</div>
-		<div>
-		    <input type="text" name="nick" id="nick" class ="nickinput" placeholder="닉네임"> 
-			<font id ="nickcheck"/>
-		</div>
-		<div>
-			<input type="button" value="중복 확인">
-		</div>
-		<div>
-			<input type="text"  name="passwd" id="passwd" class ="passinput" placeholder="비밀번호">
-			<font id = "passcheck"/>
-		</div>
-		<div>
-			<input type = "text" id = "pconfirm" class="passcheckinput" placeholder="비밀번호 확인">
-			<font id = "passconfirm"/>
-		</div>		
-		<div align="center">
-			<input type="submit" value="회원가입" class = "memberjoin">
-		</div>
-		<div align ="right">
-		<a href = "loginform">로그인</a>
-		</div>
-	</form>
-	</div>
-</body>
-</html>

@@ -26,9 +26,9 @@ public class commService {
 		return cd.getCommCount();
 	}
 
-	public List<memberDTO> getCommList(int page) {
+	public List<memberDTO> getCommList(int start) {
 		// TODO Auto-generated method stub
-		return cd.getCommList(page);
+		return cd.getCommList(start);
 	}
 
 	public void commUpdateCount(int no) {

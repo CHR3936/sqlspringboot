@@ -31,7 +31,7 @@ public class commController {
 	
 	@RequestMapping("commform")
 	public String commform() {
-		return "commform";
+		return "comm/commform";
 	}
 	
 	
@@ -68,16 +68,17 @@ public class commController {
 		 		result = 1;
 		 		model.addAttribute("result", result);
 		
-		 		return "uploadresult";
+		 		return "comm/uploadresult";
 				  
 			}else if (!extension.equals(".jpg")&&
 					  !extension.equals(".jpeg")&&
 					  !extension.equals(".gif")&& 
 					  !extension.equals(".png")) {
 				  
-				  result = 2; model.addAttribute("result", result);
+				  result = 2; 
+				  model.addAttribute("result", result);
 				  
-				  return "uploadresult"; 
+				  return "comm/uploadresult"; 
 			}
 		} 
 	  		if(size > 0 ) {
@@ -126,20 +127,22 @@ public class commController {
 		model.addAttribute("comm", comm);
 		model.addAttribute("page", page);
 		
-		return "commcontent";
+		return "comm/commcontent";
 	}
 
 	@RequestMapping("commlist")
 	public String commlist(@RequestParam(value = "page", defaultValue = "1") int page,
 						   Model model) {
 	
-		int listCount = cs.getCommCount();
+		int listCount = cs.getCommCount();		
 		
+		int seq = 0;
+		int start = (page - 1) * 10;
 		int limit = 10;
 		int startRow = (page - 1) * limit + 1;
 		int endRow = page * limit;
 		
-		List<memberDTO> commList = cs.getCommList(page);
+		List<memberDTO> commList = cs.getCommList(start);
 		
 		int pageCount = listCount/limit+((listCount%10 == 0)?0:1);
 		
@@ -156,9 +159,21 @@ public class commController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		
-		return "commlist";
+		return "comm/commlist";
 	}
 	
+	@RequestMapping("commupdateform")
+	public String commupdateform(@RequestParam("no") int no,
+								 @RequestParam("page") String page,
+								 Model model) {
+		
+		
+		commDTO comm = cs.getCommunity(no);
+		model.addAttribute("comm", comm);
+		model.addAttribute("page", page);
+		
+		return "comm/commupdateform";
+	}
 	
 	
 	
