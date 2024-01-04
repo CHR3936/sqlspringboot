@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="js/memberjoin.js"></script>
+<script src="${pageContext.request.contextPath}/js/memberjoin.js"></script>
 <style>
 @charset "UTF-8";
 
@@ -62,11 +62,15 @@ body{
    }
 }
 
+/* div{ */
+/* 	margin : 10px; */
+/* 	position: relative; */
+/* } */
+
 div{
 	margin : 10px;
-	position: relative;
+	
 }
-
 
 form{
   width:100%;
@@ -103,7 +107,7 @@ form{
         border:3;
         background: rgba(#0f132a,.1);
         color : rgba(#0f132a,.3);
-        padding:0 0 0 15px;
+        padding:0 0 0 0px;
         font-size:14px;
         font-family: 'Montserrat', sans-serif;
         
@@ -112,7 +116,8 @@ form{
      
   }
 
-	.emailinput{
+	.email{
+		position: relative;
         display:block;
         width:90%;
         max-width:680px;
@@ -127,7 +132,8 @@ form{
         font-family: 'Montserrat', sans-serif;
        
      }
-	.nickinput{
+	
+	.nick{
         display:block;
         width:90%;
         max-width:680px;
@@ -142,6 +148,7 @@ form{
         font-family: 'Montserrat', sans-serif;
        
      }
+	
 	.passinput{
         display:block;
         width:90%;
@@ -195,10 +202,52 @@ form{
   }
 }
 
-.mconfirm{
-	position: absolute;
-	top : 118px;
+
+
+
+
+ /* .emailcheck {
+  position: absolute;
+  top : 118px;
+  width: 100px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgb(77,77,77);
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left : 530px;
+  &:hover {
+    background: rgb(77,77,77);
+    color: #fff;
+  } 
 }
+
+ .nconfirm {
+  position: absolute;
+  top : 180px;
+  width: 100px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgb(77,77,77);
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left : 530px;
+  
+  &:hover {
+    background: rgb(77,77,77);
+    color: #fff;
+  } 
+} */
+
+
 
 .google__btn{
    display:block;
@@ -238,7 +287,61 @@ form{
 }
 
 
+
 </style>
+<script>
+var auth = false;
+
+$(document).ready(function() {
+
+	$("#emaildetail").hide();
+	$("#econfirm").hide();
+
+	$("#emailcheck").click(function() {
+		if ($("#email").val() == "") {
+			alert("이메일을 입력해주세요");
+			$("#email").focus();
+			return false;
+		}
+
+		$.ajax({
+			url : "send.do",
+			data : {
+				"mail" : $("#email").val()
+			},
+			success : function(data) {
+				$("#emaildetail").show();
+				$("#econfirm").show();
+				alert(data);
+
+				$("#econfirm").click(function() {
+
+					if ($("#emaildetail").val() == "") {
+						alert("인증번호를 입력하세요");
+						$("#emailcheck").focus();
+						return false;
+					}
+
+					if (data == $("#emaildetail").val()) {
+						alert("인증 성공");
+						$("#emaildetail").hide();
+						$("#econfirm").hide();
+
+						$("#nick").focus();
+						auth = true;
+						return false;
+					}
+
+				});
+
+			}
+
+		});
+
+	});
+
+});
+</script>
 </head>
 <body>
 <div class ="container">
@@ -248,20 +351,22 @@ form{
 
 	<form id = "myform" action="memberjoin" method="post" modelAttribute="member">
 		<div>
-			<input type="email" name="id" id="email" class="emailinput" placeholder="이메일" />
+			<input type="email" name="id" id="email" class="email" placeholder="이메일" />
 			<font id ="emailcheck"/>
 		</div>
-			<input type="button" value="메일인증" id="emailcheck" class = "mconfirm">		
+		<div>
+			<input type="button" value="메일인증" id="emailcheck" class = "emailcheck">
+		</div>
 		<div>
 			<input type="text" id="emaildetail"> 
 			<input type="button" value="인증확인" id="econfirm" >
 		</div>
 		<div>
-		    <input type="text" name="nick" id="nick" class ="nickinput" placeholder="닉네임"> 
+		    <input type="text" name="nick" id="nick" class ="nick" placeholder="닉네임"> 
 			<font id ="nickcheck"/>
 		</div>
 		<div>
-			<input type="button" value="중복 확인">
+			<input type="button" value="중복 확인" class ="nconfirm">
 		</div>
 		<div>
 			<input type="text"  name="passwd" id="passwd" class ="passinput" placeholder="비밀번호">
