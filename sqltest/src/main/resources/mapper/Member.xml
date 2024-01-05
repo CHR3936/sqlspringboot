@@ -3,9 +3,9 @@
 
 <mapper namespace="member">
 
-	<insert id="memberJoin" parameterType="member">
+	<insert id="memberInsert" parameterType="member">
 		insert into member(nick,id,passwd,admin_role)
-		values(#{nick},#{id},#{passwd},1)
+		values(#{nick},#{id},#{passwd},'N')
 	</insert>
 
 

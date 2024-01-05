@@ -20,21 +20,9 @@ public class memberService {
 	@Autowired
 	private memberDAO md;
 
-	public Map<String, String> validateHandling(Errors errors) {
+	public int memberInsert(memberDTO member) {
 		// TODO Auto-generated method stub
-		Map<String, String> validatorResult = new HashMap<>();
-		
-		for(FieldError error : errors.getFieldErrors()) {
-			String vaildKeyName = String.format("vaild_%s", error.getField());
-			validatorResult.put(vaildKeyName, error.getDefaultMessage());
-		}
-		
-		return validatorResult;
-	}
-
-	public int memberJoin(@Valid memberDTO member) {
-		// TODO Auto-generated method stub
-		return md.memberJoin(member);
+		return md.memberInsert(member);
 	}
 
 

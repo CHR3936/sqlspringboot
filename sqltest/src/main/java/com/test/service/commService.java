@@ -40,6 +40,16 @@ public class commService {
 		// TODO Auto-generated method stub
 		return cd.getCommunity(no);
 	}
+
+	public void commUpdate(commDTO comm) {
+		// TODO Auto-generated method stub
+		cd.commUpdate(comm);
+	}
+
+	public int commDelete(int no) {
+		// TODO Auto-generated method stub
+		return cd.commDelete(no);
+	}
 	
 	
 }

@@ -1,39 +1,87 @@
+var auth = false;
+
+$(document).ready(function() {
+
+	$("#emaildetail").hide();
+	$("#econfirm").hide();
+
+	$("#emailcheck").click(function() {
+		if ($("#email").val() == "") {
+			alert("이메일을 입력해주세요");
+			$("#email").focus();
+			return false;
+		}
+	$("")
+
+		$.ajax({
+			url : "send.do",
+			data : {
+				"mail" : $("#email").val()
+			},
+			success : function(data) {
+				$("#emaildetail").show();
+				$("#econfirm").show();
+				alert(data);
+
+				$("#econfirm").click(function() {
+
+					if ($("#emaildetail").val() == "") {
+						alert("인증번호를 입력하세요");
+						$("#emailcheck").focus();
+						return false;
+					}
+
+					if (data == $("#emaildetail").val()) {
+						alert("인증 성공");
+						$("#emaildetail").hide();
+						$("#econfirm").hide();
+
+						$("#nick").focus();
+						auth = true;
+						return false;
+					}
+
+				});
+
+			}
+
+		});
+
+	});
+
+});
 
 	
 	$(function(){
 		$("#myform").submit(function(){
 					
-			if($("#email").val() == ""){
-				$("#emailcheck").html('이메일을 입력해주세요.');
-		 		$("#emailcheck").attr('color','red');
-		 		$("#email").focus();
+			
+			if($("#nick").val() == ""){
+				$("#nickcheck1").html('닉네임을 입력해주세요.');
+		 		$("#nickcheck1").attr('color','red');
+		 		$("#nick").focus();
 		 		return false;	
 			}else{
-				$("#emailcheck").hide();
+				$("#nickcheck1").hide();
 			}
-			if($("#nick").val() == ""){
-				$("#nickcheck").html('닉네임을 입력해주세요.');
-		 		$("#nickcheck").attr('color','red');
-		 		$("#nick").focus();
-		 		return false;	
-			}
-			
 		 	if($("#passwd").val() == ""){
-		 		$("#passcheck").html('비밀번호를 입력해주세요.');
-		 		$("#passcheck").attr('color','red');
+		 		$("#passcheck1").html('비밀번호를 입력해주세요.');
+		 		$("#passcheck1").attr('color','red');
 		 		$("#nick").focus();
 		 		return false;	
-		 	}	
+		 	}else{
+				$("#passcheck1").hide();
+			}	
 		});
 	});
 	$(function(){
 		$("#pconfirm").keyup(function(){
 			if($("#passwd").val() == $("#pconfirm").val()){
-				$("#passconfirm").html("비밀번호가 일치합니다.");
-				$("#passconfirm").attr('color','green');
+				$("#passconfirm1").html("비밀번호가 일치합니다.");
+				$("#passconfirm1").attr('color','green');
 			}else{
-				$("#passconfirm").html("비밀번호가 일치하지 않습니다");
-				$("#passconfirm").attr('color','red');
+				$("#passconfirm1").html("비밀번호가 일치하지 않습니다");
+				$("#passconfirm1").attr('color','red');
 					return false;
 			}
 		});

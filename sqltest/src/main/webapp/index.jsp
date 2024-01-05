@@ -10,7 +10,7 @@
 
 
 <script>
-	location.href="memberjoinform"
+	location.href="commlist"
 </script>
 
 

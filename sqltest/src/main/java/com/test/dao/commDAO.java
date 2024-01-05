@@ -39,6 +39,18 @@ public class commDAO {
 		// TODO Auto-generated method stub
 		return session.selectOne("getCommunity", no);
 	}
+
+	public void commUpdate(commDTO comm) {
+		// TODO Auto-generated method stub
+		session.update("commUpdate", comm);
+	}
+
+	public int commDelete(int no) {
+		// TODO Auto-generated method stub
+		return session.delete("commDelete", no);
+	}
+
+	
 	
 }
 

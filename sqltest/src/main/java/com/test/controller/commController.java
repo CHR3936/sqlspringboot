@@ -90,6 +90,7 @@ public class commController {
 	  		comm.setCommunity_file(newfilename);
 			cs.commInsert(comm);	  
 				  
+	  		model.addAttribute("filename", filename);
 	  		
 	  		return "redirect:commlist";
 				  
@@ -99,25 +100,10 @@ public class commController {
 	  
 	  
 	  
-	  
-	 
-	 
-
-	/*
-	 * @RequestMapping("commInsert") public String commInsert(@ModelAttribute
-	 * commDTO comm, Model model) {
-	 * 
-	 * int result = cs.commInsert(comm);
-	 * 
-	 * model.addAttribute("result", result);
-	 * 
-	 * return "redirect:commlist"; }
-	 */
-	
 	@RequestMapping("commcontent")
 	public String commcontent(@RequestParam("no") int no,
 							  @RequestParam("page") String page,
-							  HttpSession session,
+ 							  HttpSession session,
 							  Model model) {
 		
 		cs.commUpdateCount(no);
@@ -126,14 +112,15 @@ public class commController {
 		
 		model.addAttribute("comm", comm);
 		model.addAttribute("page", page);
-		
 		return "comm/commcontent";
 	}
 
 	@RequestMapping("commlist")
 	public String commlist(@RequestParam(value = "page", defaultValue = "1") int page,
-						   Model model) {
+						   HttpSession session, memberDTO member ,Model model) {
 	
+		session.setAttribute("nick", member.getNick());
+		
 		int listCount = cs.getCommCount();		
 		
 		int seq = 0;
@@ -169,6 +156,7 @@ public class commController {
 		
 		
 		commDTO comm = cs.getCommunity(no);
+		
 		model.addAttribute("comm", comm);
 		model.addAttribute("page", page);
 		
@@ -176,8 +164,80 @@ public class commController {
 	}
 	
 	
-	
-	
+	@RequestMapping(value = "/commupdate", method = RequestMethod.POST) 
+	  public String commupdate(@RequestParam("fileupload") MultipartFile mf,
+			  					commDTO comm,
+			  					HttpServletRequest request,
+			  					HttpSession session,
+			  					Model model) throws Exception{
+	  
+	  session.setAttribute("nick", comm.getNick());
+	  
+	  String filename = mf.getOriginalFilename(); 
+	  int size = (int) mf.getSize();
+	  System.out.println("filename:"+filename);
+	  String path = request.getRealPath("upload"); 
+	  System.out.println("path:"+path);
+	  int result = 0;
+	  
+	  String newfilename = "";
+	  
+	  
+	  if(size > 0) {
+		  
+		 String extension = filename.substring(filename.lastIndexOf("."),filename.length()); System.out.println("extension:" + extension);
+				  
+		 UUID uuid = UUID.randomUUID();
+				  
+		 newfilename = uuid.toString() + extension; 
+		 System.out.println("newfilename:" + newfilename);
+				  
+		 	if(size > 100000) {
+		 		result = 1;
+		 		model.addAttribute("result", result);
+		
+		 		return "comm/uploadresult";
+				  
+			}else if (!extension.equals(".jpg")&&
+					  !extension.equals(".jpeg")&&
+					  !extension.equals(".gif")&& 
+					  !extension.equals(".png")) {
+				  
+				  result = 2; 
+				  model.addAttribute("result", result);
+				  
+				  return "comm/uploadresult"; 
+			}
+		} 
+	  		if(size > 0 ) {
+				  
+				  mf.transferTo(new File(path + "/" + newfilename)); 
+				    		
+	  		}	  
+				  
+	  		comm.setCommunity_file(newfilename);
+			cs.commUpdate(comm);	  
+				  
+	  		model.addAttribute("filename", filename);
+	  		
+	  		return "redirect:commlist";
+				  
+		  
+	  }
+		
+	 @RequestMapping("commdelete")
+	 public String commdelete(@ModelAttribute commDTO comm,
+			 				  @RequestParam("page") String page,
+			 				  Model model) {
+		 
+		 int result = cs.commDelete(comm.getNo());
+		 
+		 model.addAttribute("result", result);
+		 model.addAttribute("page", page);
+				 
+		return "redirect:commlist"; 
+	 }
+		
 	
 	
 }

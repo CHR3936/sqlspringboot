@@ -12,11 +12,11 @@ import com.test.model.memberDTO;
 public class memberDAO {
 
 	@Autowired
-	private SqlSession msession;
+	private SqlSession mse;
 
-	public int memberJoin(@Valid memberDTO member) {
+	public int memberInsert(memberDTO member) {
 		// TODO Auto-generated method stub
-		return msession.insert("memberJoin", member);
+		return mse.insert("memberInsert", member);
 	}
 
 	

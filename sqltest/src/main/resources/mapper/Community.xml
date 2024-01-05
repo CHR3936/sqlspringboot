@@ -25,4 +25,14 @@
 	<select id="getCommunity" parameterType="int" resultType="comm">
 		select * from community where no=#{no}
 	</select>
+	
+	<update id="commUpdate" parameterType="comm">
+		update community set nick=#{nick},title=#{title},content=#{content},
+		reg_date=now(),community_file=#{community_file, jdbcType=VARCHAR}
+		where no=#{no} 
+	</update>
+	
+	<delete id="commDelete" parameterType="int">
+		delete from community where no=#{no}
+	</delete>
 </mapper>	

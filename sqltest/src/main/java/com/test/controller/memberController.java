@@ -29,29 +29,30 @@ public class memberController {
 		return "member/loginform";
 	}
 	
+	
 	@RequestMapping("memberjoinform")
 	public String memberjoinform() {
 		return "member/memberjoinform";
 	}
 	
 	@RequestMapping("memberjoin")
-	public String memberjoin(@Valid memberDTO member,Errors errors, Model model) {
+	public String memberjoin(@ModelAttribute memberDTO member, Model model) {
 		
-		if(errors.hasErrors()) {
-			model.addAttribute("member", member);
-			
-			Map<String, String> validatorResult = ms.validateHandling(errors);
-			for(String key : validatorResult.keySet()) {
-				model.addAttribute(key, validatorResult.get(key));
-			}
-			
-			return "memberjoinform";
-		}
-		
-		int result = ms.memberJoin(member);		
+		int result = ms.memberInsert(member);
 		
 		model.addAttribute("result", result);
-		return "commlist";
+		
+		return "member/joinresult";
+	}
+	
+	@RequestMapping("login")
+	public String login(HttpSession session,
+						memberDTO member,
+						Model model) {
+		
+		session.setAttribute("nick", member.getNick());
+		
+		return "redirect:commlist";
 	}
 	
 	@RequestMapping("logout")
