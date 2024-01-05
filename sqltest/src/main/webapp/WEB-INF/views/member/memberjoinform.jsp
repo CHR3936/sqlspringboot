@@ -36,11 +36,11 @@
 		</div>
 			<input type="button" value="중복 확인" class ="nconfirm">
 		<div>
-			<input type="text"  name="passwd" id="passwd" class ="passinput" placeholder="비밀번호">
+			<input type="password"  name="passwd" id="passwd" class ="passinput" placeholder="비밀번호">
 			<font id = "passcheck1"/>
 		</div>
 		<div>
-			<input type = "text" id = "pconfirm" class="passcheckinput" placeholder="비밀번호 확인">
+			<input type = "password" id = "pconfirm" class="passcheckinput" placeholder="비밀번호 확인">
 			<font id = "passconfirm1"/>
 		</div>		
 		<div align="center">
