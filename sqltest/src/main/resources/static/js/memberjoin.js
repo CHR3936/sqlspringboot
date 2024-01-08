@@ -2,7 +2,6 @@ var auth = false;
 
 $(document).ready(function() {
 
-	$("#emaildetail").hide();
 	$("#econfirm").hide();
 
 	$("#emailcheck").click(function() {
@@ -11,7 +10,6 @@ $(document).ready(function() {
 			$("#email").focus();
 			return false;
 		}
-	$("")
 
 		$.ajax({
 			url : "send.do",
@@ -19,22 +17,22 @@ $(document).ready(function() {
 				"mail" : $("#email").val()
 			},
 			success : function(data) {
-				$("#emaildetail").show();
-				$("#econfirm").show();
 				alert(data);
 
+				$("#emailcheck").hide();
+				$("#econfirm").show();
+				
 				$("#econfirm").click(function() {
+						
 
 					if ($("#emaildetail").val() == "") {
 						alert("인증번호를 입력하세요");
-						$("#emailcheck").focus();
+						$("#emaildetail").focus();
 						return false;
 					}
 
 					if (data == $("#emaildetail").val()) {
 						alert("인증 성공");
-						$("#emaildetail").hide();
-						$("#econfirm").hide();
 
 						$("#nick").focus();
 						auth = true;

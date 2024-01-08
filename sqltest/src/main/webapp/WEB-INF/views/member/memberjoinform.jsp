@@ -9,9 +9,19 @@
 <script src="js/memberjoin.js"></script>
 <link href = "css/memberjoinform.css" rel="stylesheet">
 <script>
-
-
-
+function nconfirm(){
+	alert("중복 확인");
+	
+	$.ajax({
+		type : "GET",
+	 	url : "${pageContext.request.contextPath}/nickcheck"
+	 	success : function(result){
+	 			if(result == $("#nick").val()){
+	 				alert("인증성공");
+	 			}
+	 	}	
+	});
+}
 </script>
 </head>
 <body>
@@ -23,18 +33,15 @@
 	<form id = "myform" action="memberjoin" method="post" modelAttribute="member">
 		<div>
 			<input type="email" name="id" id="email" class="email" placeholder="이메일" />
-			<font id ="emailcheck1"/>
+			<input type="text" class = "emaildetail" id = "emaildetail" placeholder="인증번호">
 		</div>
 			<input type="button" value="메일 인증" id="emailcheck" class = "emailcheck">
+			<input type = "button" value = "인증 번호 확인" id = "econfirm" class = "econfirm">
 		<div>
-			<input type="text" id="emaildetail"> 
-			<input type="button" value="인증 확인" id="econfirm" >
-		</div>
-		<div>
-		    <input type="text" name="nick" id="nick" class ="nick" placeholder="닉네임"> 
+		    <input type="text" name="nick" id="nick" class ="nick" placeholder="닉네임" > 
 			<font id ="nickcheck1"/>
-		</div>
-			<input type="button" value="중복 확인" class ="nconfirm">
+		</div>		
+			<input type="button" value="중복 확인"  class ="nconfirm" onclick="nconfirm()">		
 		<div>
 			<input type="password"  name="passwd" id="passwd" class ="passinput" placeholder="비밀번호">
 			<font id = "passcheck1"/>

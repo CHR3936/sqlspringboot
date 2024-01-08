@@ -11,7 +11,7 @@
 <table border = 1 width = 400 align = center>
 	<caption>글 작성</caption>
 	<tr><th>작성자명</th>
-		<td><input type= text name = "nick"></td>
+		<td><input type= "text" name = "nick" value =${sessionScope.nick } readonly="readonly"></td>
 	</tr>
 	<tr><th>제목</th>
 		<td><input type =text name= "title"></td>

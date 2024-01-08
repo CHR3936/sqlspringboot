@@ -25,6 +25,11 @@ public class memberService {
 		return md.memberInsert(member);
 	}
 
+	public memberDTO login(String id) {
+		// TODO Auto-generated method stub
+		return md.login(id);
+	}
+
 
 	
 }

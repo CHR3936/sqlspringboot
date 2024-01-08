@@ -119,9 +119,10 @@ public class commController {
 	public String commlist(@RequestParam(value = "page", defaultValue = "1") int page,
 						   HttpSession session, memberDTO member ,Model model) {
 	
-		session.setAttribute("nick", member.getNick());
+		
 		
 		int listCount = cs.getCommCount();		
+		
 		
 		int seq = 0;
 		int start = (page - 1) * 10;

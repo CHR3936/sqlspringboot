@@ -19,19 +19,25 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
-	
-	<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-validation</artifactId>
-</dependency>
-	
-	<!-- SpringBoot mailService -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-mail</artifactId>
-    </dependency>
-	
-	
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.15.2</version>
+		</dependency>
+
+		<!-- SpringBoot mailService -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+
 		<!-- 내장Tomcat으로 jsp 파일 실행을 위한 의존성을 추가 -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -104,6 +110,7 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+
 		</dependency>
 	</dependencies>
 

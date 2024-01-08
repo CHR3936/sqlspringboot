@@ -19,6 +19,11 @@ public class memberDAO {
 		return mse.insert("memberInsert", member);
 	}
 
+	public memberDTO login(String id) {
+		// TODO Auto-generated method stub
+		return mse.selectOne("login", id);
+	}
+
 	
 	
 }

@@ -2,16 +2,22 @@ package com.test.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.test.dao.memberDAO;
 import com.test.model.memberDTO;
@@ -24,17 +30,19 @@ public class memberController {
 	@Autowired
 	private memberService ms;
 	
+	// 로그인 폼 
 	@RequestMapping("loginform")
 	public String loginform() {
 		return "member/loginform";
 	}
 	
-	
+	// 회원가입 폼
 	@RequestMapping("memberjoinform")
 	public String memberjoinform() {
 		return "member/memberjoinform";
 	}
 	
+	// 회원가입
 	@RequestMapping("memberjoin")
 	public String memberjoin(@ModelAttribute memberDTO member, Model model) {
 		
@@ -45,16 +53,36 @@ public class memberController {
 		return "member/joinresult";
 	}
 	
+	// 로그인
 	@RequestMapping("login")
-	public String login(HttpSession session,
-						memberDTO member,
-						Model model) {
+	public String login(String id, String passwd,HttpSession session,
+						Model model) throws Exception{
+
+		int result = 0;
+		memberDTO member = ms.login(id);
 		
-		session.setAttribute("nick", member.getNick());
+		// 로그인 성공
+		if(member.getPasswd().equals(passwd)) {
+			session.setAttribute("nick", member.getNick());
+			return "redirect:commlist";
 		
-		return "redirect:commlist";
+		// 회원 정보가 없을 경우
+		}else if(member == null) {
+			result = -1;
+			model.addAttribute("result", result);
+			return "member/loginresult";
+		
+		// 회원 정보가 틀릴 경우 
+		}else {
+			result = -2;
+			model.addAttribute("result", result);
+			return "member/loginresult";
+		}
+		
+		
 	}
 	
+	// 로그아웃
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		
@@ -62,5 +90,14 @@ public class memberController {
 		
 		return "redirect:commlist";
 	}
-}
+
+	
+
+
+
+
+
+
+
+}	// class end
 

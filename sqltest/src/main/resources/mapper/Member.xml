@@ -8,5 +8,7 @@
 		values(#{nick},#{id},#{passwd},'N')
 	</insert>
 
-
+	<select id="login" parameterType="String" resultType="member">
+		select * from member where id=#{id}
+	</select>
 </mapper>	
