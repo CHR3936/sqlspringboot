@@ -80,6 +80,7 @@ public class memberController {
 		}
 		
 		
+		
 	}
 	
 	// 로그아웃
