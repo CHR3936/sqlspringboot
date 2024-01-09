@@ -24,6 +24,11 @@ public class memberDAO {
 		return mse.selectOne("login", id);
 	}
 
+	public int nickCheck(String nick) {
+		// TODO Auto-generated method stub
+		return mse.selectOne("nickCheck", nick);
+	}
+
 	
 	
 }

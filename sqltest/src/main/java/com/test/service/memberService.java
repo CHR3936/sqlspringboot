@@ -30,6 +30,11 @@ public class memberService {
 		return md.login(id);
 	}
 
+	public int nickCheck(String nick) {
+		// TODO Auto-generated method stub
+		return md.nickCheck(nick);
+	}
+
 
 	
 }

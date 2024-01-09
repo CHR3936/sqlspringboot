@@ -7,10 +7,31 @@
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 	<meta charset="UTF-8">
 	<title>게시판 목록</title>
+<style>
+ table{
+ 	border: 1;
+ 	width: 800px;
+    border-collapse: collapse;
+    margin: auto;
+ }
+ th, td {
+    border-bottom: 1px solid #3E70A6;
+    padding: 10px;
+  }
+ 
+ .top{
+ 	background: #569FBF;
+ 	height: 50px;
+ 	color : white;
+ }
+
+.tbody{
+	text-align: center;
+}
+</style>
 </head>
 <body>
-	<table border =1 align = "center" width = 800>
-		<caption>게시판 목록</caption>
+	<div>
 		<div align = "right">
 		<c:if test="${empty sessionScope.nick }">
 		<input type = "button" value = "로그인" onclick = "location.href='loginform'">
@@ -19,18 +40,21 @@
 		<input type = "button" value = "로그아웃" onclick = "location.href = 'logout'">
 		</c:if>
 		</div>
-		<tr>
+		<table >
+		<tr class = "top">
 			<th>번호</th>
 			<th>제목</th>
 			<th>작성자</th>
 			<th>날짜</th>
 			<th>조회수</th>
 		</tr>		
+		</div>
 		
 		<c:set var = "num" value ="${listCount-(page-1)*10}"/>
-	
+		<tbody class = "tbody">
+			
 		<c:forEach var = "t" items ="${commList}">
-		<tr align = "center">
+		<tr>		
 			<td>
 				<c:out value="${num}"/>
 				<c:set var="num" value ="${num-1}"/>
@@ -43,11 +67,26 @@
 				<fmt:formatDate value="${t.reg_date }" pattern="yyyy-MM-dd"/>
 			</td>
 			<td>${t.read_count }</td>
-		</tr>	
-		</c:forEach>	
-	</table>	
+		</tr>
+		</c:forEach>
+		</tbody>	
+	</table>
+	
+	
+	
+	
+	
+	
+	
+	<div align = "right">
 	<a href="commform">글쓰기</a>
-	<tr><td><%= session.getAttribute("nick") %></td></tr>
+	</div>
+	<div align = "right" class = "snick">
+	<%= session.getAttribute("nick") %>
+	</div>
+	
+	
+	
 	
 	<center>
 		<c:if test="${listCount > 0 }">

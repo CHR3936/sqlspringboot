@@ -9,19 +9,26 @@
 <script src="js/memberjoin.js"></script>
 <link href = "css/memberjoinform.css" rel="stylesheet">
 <script>
-function nconfirm(){
-	alert("중복 확인");
+$("#nconfirm").click(function(){
+	
+	alert("버튼 눌림");
+	return false;
+	/* var nick = $("#nick").val();
 	
 	$.ajax({
-		type : "GET",
-	 	url : "${pageContext.request.contextPath}/nickcheck"
-	 	success : function(result){
-	 			if(result == $("#nick").val()){
-	 				alert("인증성공");
-	 			}
-	 	}	
-	});
-}
+		type: "post",
+		url: "nickcheck",
+		data : {"nick" : nick},
+		success : function(data){
+			if(data == 1){
+				alert("사용가능한 닉네임입니다.");
+			}else{
+				alert("사용중인 닉네임입니다.");
+			}
+		}
+	}); */
+});
+
 </script>
 </head>
 <body>
@@ -41,7 +48,7 @@ function nconfirm(){
 		    <input type="text" name="nick" id="nick" class ="nick" placeholder="닉네임" > 
 			<font id ="nickcheck1"/>
 		</div>		
-			<input type="button" value="중복 확인"  class ="nconfirm" onclick="nconfirm()">		
+			<input type="button" value="중복 확인"  class ="nconfirm" id ="nconfirm" >		
 		<div>
 			<input type="password"  name="passwd" id="passwd" class ="passinput" placeholder="비밀번호">
 			<font id = "passcheck1"/>

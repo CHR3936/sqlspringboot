@@ -15,7 +15,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -92,7 +94,13 @@ public class memberController {
 		return "redirect:commlist";
 	}
 
-	
+	@RequestMapping("nickcheck")
+	public Integer nickcheck(@RequestParam("nick") String nick) {
+		
+		int result = ms.nickCheck(nick);
+		
+		return result;
+	}
 
 
 

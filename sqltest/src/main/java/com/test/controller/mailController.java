@@ -48,8 +48,8 @@ public class mailController {
 
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = mailcon.getFromEmail();
-		String fromName = "친절한 홍길동씨";
-		String subject = "Overflow인증메일입니다.";
+		String fromName = "Community Mail";
+		String subject = "Community 인증메일입니다.";
 
 		// 받는 사람 E-Mail 주소
 		//String mail = model;
@@ -67,7 +67,7 @@ public class mailController {
 			email.addTo(mail, charSet);
 			email.setFrom(fromEmail, fromName, charSet);
 			email.setSubject(subject);
-			email.setHtmlMsg("<p align = 'center'>Overflow에 오신것을 환영합니다.</p><br>" 
+			email.setHtmlMsg("<p align = 'center'>Community 가입 인증번호입니다.</p><br>" 
 							 + "<div align='center'> 인증번호 : " + a + "</div>");
 			email.send();
 		} catch (Exception e) {
