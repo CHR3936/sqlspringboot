@@ -95,7 +95,9 @@ public class memberController {
 	}
 
 	@RequestMapping("nickcheck")
+	@ResponseBody
 	public Integer nickcheck(@RequestParam("nick") String nick) {
+		System.out.println("닉네임 중복검사");
 		
 		int result = ms.nickCheck(nick);
 		
