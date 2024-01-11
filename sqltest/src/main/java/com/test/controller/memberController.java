@@ -44,6 +44,7 @@ public class memberController {
 		return "member/memberjoinform";
 	}
 	
+	
 	// 회원가입
 	@RequestMapping("memberjoin")
 	public String memberjoin(@ModelAttribute memberDTO member, Model model) {
