@@ -39,8 +39,10 @@
 	<input type="button" value = "삭제"
 		   onclick="location.href='commdelete?no=${comm.no}&page=${page} '">
 	</div>
-<form>
-<input type = "text" placeholder="댓글 내용을 입력해주세요." name = >
+<form action = "replyinsert" method="post">
+<input type = "text" placeholder="댓글 내용을 입력해주세요." name ="re_content" >
+<input type = "button" value = "작성">
+<input type = "reset" value = "취소">
 </form>
 </body>
 </html>
