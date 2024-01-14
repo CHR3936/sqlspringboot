@@ -103,13 +103,16 @@ public class commController {
 	@RequestMapping("commcontent")
 	public String commcontent(@RequestParam("no") int no,
 							  @RequestParam("page") String page,
+							  memberDTO member,
  							  HttpSession session,
 							  Model model) {
-		
+
+		String nick = (String)session.getAttribute("nick");
 		cs.commUpdateCount(no);
 		
 		commDTO comm = cs.getCommunity(no);
 		
+		model.addAttribute("nick", nick);
 		model.addAttribute("comm", comm);
 		model.addAttribute("page", page);
 		return "comm/commcontent";

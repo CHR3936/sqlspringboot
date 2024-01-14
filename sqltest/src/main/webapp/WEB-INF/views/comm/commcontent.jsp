@@ -9,14 +9,16 @@
 <title>Insert title here</title>
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 <script>
-function replyinsert({
-	alert("댓글 작성 테스트");
+$(function(){
 	
-	var formDate = {
-			nick : $("sessionScope.nick"),
-			re_content : $("#")
-	}
-}
+	$("#replyinsert").click(function(){
+		alert("댓글 작성");
+		var formDate = {
+			re_content : $("#re_content").val();
+		};
+		
+	});
+});
 
 </script>
 </head>
@@ -51,9 +53,10 @@ function replyinsert({
 	<input type="button" value = "삭제"
 		   onclick="location.href='commdelete?no=${comm.no}&page=${page} '">
 	</div>
-<form action = "replyinsert" method="post">
+<form >
+<%= session.getAttribute("nick") %>
 <input type = "text" placeholder="댓글 내용을 입력해주세요." name ="re_content" >
-<input type = "button" value = "작성">
+<input type = "button" value = "작성" id="replyinsert" >
 <input type = "reset" value = "취소">
 </form>
 </body>
