@@ -7,6 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src = "http://code.jquery.com/jquery-latest.js"></script>
+<script>
+function replyinsert({
+	alert("댓글 작성 테스트");
+	
+	var formDate = {
+			nick : $("sessionScope.nick"),
+			re_content : $("#")
+	}
+}
+
+</script>
 </head>
 <body>
 <div>
