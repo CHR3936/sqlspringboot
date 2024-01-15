@@ -87,7 +87,6 @@ $(document).ready(function(){
 
 function replyupdate(){
 	alert("댓글 수정 시도");
-	var no = $(this).attr('rno');
 }
 
 function replydelete(){
