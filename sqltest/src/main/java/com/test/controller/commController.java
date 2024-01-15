@@ -240,6 +240,6 @@ public class commController {
 		return "redirect:commlist"; 
 	 }
 		
-	
+
 	
 }

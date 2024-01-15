@@ -51,5 +51,5 @@ public class replyController {
 		return new ResponseEntity<>(map,HttpStatus.OK);
 	}
 
-
+	
 }
