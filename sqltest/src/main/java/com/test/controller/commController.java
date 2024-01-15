@@ -107,12 +107,10 @@ public class commController {
  							  HttpSession session,
 							  Model model) {
 
-		String nick = (String)session.getAttribute("nick");
 		cs.commUpdateCount(no);
 		
 		commDTO comm = cs.getCommunity(no);
 		
-		model.addAttribute("nick", nick);
 		model.addAttribute("comm", comm);
 		model.addAttribute("page", page);
 		return "comm/commcontent";

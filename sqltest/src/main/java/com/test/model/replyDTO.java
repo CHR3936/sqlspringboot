@@ -1,5 +1,6 @@
 package com.test.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
@@ -12,11 +13,9 @@ import lombok.Setter;
 @Alias("reply")
 public class replyDTO {
 
-	private int no;
+	private int rno;
+	private int bno;
 	private String nick;
 	private String re_content;
-	private Date re_date;
-	private int ref;
-	private int level;
-	private int step;
+	private Timestamp re_date;
 }

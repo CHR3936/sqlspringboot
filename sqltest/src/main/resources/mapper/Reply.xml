@@ -3,4 +3,12 @@
 
 <mapper namespace="Reply">
 
+	<insert id="replyInsert" parameterType="reply">
+	insert into reply(bno,nick,re_content,re_date)
+	values(#{bno},#{nick},#{re_content},sysdate())
+	</insert>
+	
+	<select id="getReplyList" parameterType="int" resultType="reply">
+		select * from reply where bno=#{no}
+	</select>
 </mapper>	
