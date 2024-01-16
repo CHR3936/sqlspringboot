@@ -9,7 +9,7 @@
 	</insert>
 	
 	<select id="getReplyList" parameterType="int" resultType="reply">
-		select * from reply where bno=#{no}
+		select * from reply where re_no=#{no}
 	</select>
 
 

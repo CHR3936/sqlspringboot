@@ -13,93 +13,116 @@
 <meta charset="UTF-8">
 <title>게시판 목록</title>
 <style>
-body{
-  font-family: 'Montserrat', sans-serif;
-  background:white;
+table {
+	border : 1px solid inherit;
+	color: inherit; width : 800px;
+	margin-top : 250px;
+	margin-right : 250px;
+	width : 800px;
+	border-spacing: 0;
 }
 
-.container{
-  display:block;
-  max-width:680px;
-  width:80%;
-  margin:120px auto;
-  text-align:center;
+th, td {
+	border-bottom: 1px solid #3E70A6;
+	padding: 10px;
+	
 }
 
-.header1{
+.num{
+	border-top-left-radius: 5px;
+}
+
+.count{
+	border-top-right-radius: 5px;
+}
+
+.top {
+	background: #569FBF;
+	height: 50px;
+	color: white;
+	text-align: center;
+}
+
+.tbody {
+	text-align: center;
+}
+
+.snick {
+	padding-right: 100px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.commform {
+	top : 500px; 
+}
+
+.headlist{
   color:#e91e63;
-  font-size:48px;
+  font-size:80px;
   font-weight: bolder;
   letter-spacing:-3px;
   text-decoration : none;
   margin:120px 0 80px 0 ;
-  transition:.2s linear;
+  text-align:center;
+  
+}
+.container1{
+ 	margin-top: 100px;
 }
 
- .login_btn{
-     background:#1285C4;
-     color:white;
-     display:block;
-     width:35%;
-     max-width:680px;
-     height:50px;
-     border-radius:8px;
-     margin:0 auto;
-     border:none;
-     cursor:pointer;
-     font-size:20px;
-     font-weight: bolder;
-     font-family: 'Montserrat', sans-serif;
-     box-shadow:0 15px 30px rgba(#e91e63,.36);
-    transition:.2s linear;
-    &:hover{
-      box-shadow:0 0 0 rgba(#e91e63,.0);
-    }
-  }
-} 
+ .btn_commform {
+  width: 100px;
+  height: 40px;
+  background: #569FBF;
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+  color : white;
+  margin-left: 120px; 
+  margin-top: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left : 1250px;
+  &:hover {
+    background: rgb(127,127,127);
+    color: #fff;
+  } 
+}
 
-form{
-  width:100%;
-  max-width:680px;
-  margin:40px auto 10px;
-  .input__block{
-     margin:20px auto;
-     display:block;
-     position:relative;
-     &.first-input__block{
-        &::before{
-          content:"";
-          position:absolute;
-          top:-15px;
-          left:50px;
-          display:block;
-          width:0;
-          height:0;
-        background:transparent;
-          border-left:15px solid transparent;
-          border-right:15px solid transparent;
-          border-bottom:15px solid rgba(#0f132a,.1);
-          transition:.2s linear;
-        }
-     }
-      
- 
-  
-     
-
-
+.btn_login{
+  width: 100px;
+  height: 40px;
+  background: #569FBF;
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+  color : white;
+  margin-left: 1250px; 
+  margin-top: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background: rgb(127,127,127);
+    color: #fff;
+	
+}
 </style>
 
 </head>
 <body>
-	<div class="container" >
-  	<a href = "commlist" class = "header1" >community</a>
-	
-	<form>
-	
-		<div>
+	<div class="container1" align = "center">
+		<a href="commlist" class="headlist">community</a>
+	</div>
+		<div >
 			<c:if test="${empty sessionScope.nick }">
-				<input type="button" value="로그인"  class="login_btn"
+				<input type="button" value="로그인"  class="btn_login"
 				onclick="location.href='loginform'">
 			</c:if>
 			<c:if test="${!empty sessionScope.nick }">
@@ -125,10 +148,10 @@ form{
 				<c:set var="num" value="${listCount-(page-1)*10}" />
 				<tbody class="tbody">
 
-					<c:forEach var="t" items="${commList}">
+					<c:forEach var="t" items="${commSearchList}">
 						<tr>
-							<td><c:out value="${num}" /> <c:set var="num"
-									value="${num-1}" /></td>
+							<td><c:out value="${num}" /> 
+							<c:set var="num" value="${num-1}" /></td>
 							<td><a href="commcontent?no=${t.no}&page=${page}">${t.title }</a>
 							</td>
 							<td>${t.nick }</td>
@@ -146,7 +169,6 @@ form{
 				</div>
 				
 		</div>
-		</div>
 		<div align = "center">
 		<form action="commSearch" method="post">
 				<select name = "type">
@@ -159,9 +181,8 @@ form{
 				<input type="submit" value = "검색"/>
 		</form>
 		</div>
+
 		
-</form>
-	
 
 
 		<c:if test="${listCount > 0 }">
@@ -203,5 +224,6 @@ form{
 	</div>
 	</div>
 	</div>
-	<a href="https://www.flaticon.com/kr/free-icons/" title="베타 아이콘"></a>
+
+</body>
 </html>

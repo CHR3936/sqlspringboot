@@ -64,16 +64,18 @@ public class memberController {
 		int result = 0;
 		memberDTO member = ms.login(id);
 		
+		if(member == null) {
+			result = -1;
+			model.addAttribute("result", result);
+			
+			return "member/loginresult";
+		}
+		
 		// 로그인 성공
 		if(member.getPasswd().equals(passwd)) {
 			session.setAttribute("nick", member.getNick());
 			return "redirect:commlist";
 		
-		// 회원 정보가 없을 경우
-		}else if(member == null) {
-			result = -1;
-			model.addAttribute("result", result);
-			return "member/loginresult";
 		
 		// 회원 정보가 틀릴 경우 
 		}else {

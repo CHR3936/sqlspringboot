@@ -8,9 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<style>
 
-</style>
 <script>
 function countingLength(re_content) {
     if (re_content.value.length > 300) {
@@ -22,40 +20,38 @@ function countingLength(re_content) {
 }
 
 
-function replylist(no){
-	$.ajax({
-		type : "get",
-		url : "${pageContext.request.contextPath}/reply/replylist/"+no,
-		success : function(result){
-			var content = "<div>작성자</div><div>날짜</div><div>내용</div></div>"
-			$.each(result.replylist, function (index, item) {
-		          content += "<div>" + item.re_nick + "</div>";
-		          
-		       // register를 연,월,일 시분초로 변환
-	              var date = new Date(item.create_date);
-	              var formattedDate = date.getFullYear() + "-" + addZero(date.getMonth() + 1) + "-" + addZero(date.getDate()) +
-	                  " " + addZero(date.getHours()) + ":" + addZero(date.getMinutes()) + ":" + addZero(date.getSeconds());
-	                
-	              content += "<div>" + formattedDate + "</div>";	
-		          
-		          content += "<div>" + item.re_content;
-		          content += "<input type =button value = 수정 onclick = 'replyupdate()'>";
-		          content += "<input type =button value = 삭제 onclick = 'replydelete()'>"+ "</div></div>";
-		    
-			});			
-			
-			$("#replylist").html(content);
-		}
-	});
-}
+	function replylist(no){
+		$.ajax({
+			type : "get",
+			url : "${pageContext.request.contextPath}/reply/replylist/"+no,
+			success : function(result){
+				var content = "<table><tr><th>작성자</th><th>날짜</th><th>내용</th></tr>"
+				$.each(result.replylist,function(index,item){
+					content += "<tr><td>" + item.re_nick + "</td>";
+					
+					var date = new Date(item.create_date);
+					var formattedDate = date.getFullYear() + "-" + addZero(date.getDate()) +
+					" " + addZero(date.getHours()) + ":" + addZero(date.getMinutes()) + ":" + addZero(date.getSeconds());
+					
+					content += "<td>" + formattedDate + "</td>";
+					
+					content += "<td>" + item.re_content;
+	 		        content += "<input type =button value = 수정 onclick = 'replyupdate()' >";
+	 		        content += "<input type =button value = 삭제 onclick = 'replydelete()'>"+ "</td></tr></table>";
+			    
+	 			});			
+				
+	 			$("#replylist").html(content);
+	 		}
+	 	});
+	}
 
-//10보다 작은 숫자에 0을 추가하는 함수
-function addZero(number) {
-    return number < 10 ? "0" + number : number;
-}
+	//10보다 작은 숫자에 0을 추가하는 함수
+	function addZero(number) {
+	     return number < 10 ? "0" + number : number;
+	}
 
 
-    }
     
 $(function(){	
 	
@@ -75,14 +71,14 @@ $(function(){
 			};
 			
 			$.ajax({
-				type : "POST",
+				type : "post",
 				url : "${pageContext.request.contextPath}/reply/replyinsert",
 				contentType : 'application/json',
 				data : JSON.stringify(formData),
 				success : function(result){
 					if(result == 1){
 						alert("댓글 작성");
-						$("#re_content1").val="";
+						$("#re_content1").val= " ";
 					}else{
 						alert("댓글 실패");
 					}
@@ -96,7 +92,7 @@ $(function(){
 });
 
 $(document).ready(function(){
-	replylist(${comm.no });
+	replylist(${comm.no});
 });
 
 function replyupdate(){

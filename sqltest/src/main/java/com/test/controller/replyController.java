@@ -44,6 +44,7 @@ public class replyController {
 		
 		System.out.println("replylist 진입");
 		List<replyDTO> replylist = rs.getReplyList(no);
+		System.out.println("replylist:"+replylist);
 		
 		Map map = new HashMap<>();
 		map.put("replylist", replylist);

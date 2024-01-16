@@ -4,35 +4,91 @@
 <mapper namespace="community">
 
 
-	<insert id = "commInsert" parameterType="comm" useGeneratedKeys="true" keyProperty="no">
-	insert into community(nick,title,content,read_count,reg_date,community_file)
-	values(#{nick},#{title},#{content},0,sysdate(),#{community_file, jdbcType=VARCHAR})
+	<insert id="commInsert" parameterType="comm"
+		useGeneratedKeys="true" keyProperty="no">
+		insert into community(nick,title,content,read_count,reg_date,community_file)
+		values(#{nick},#{title},#{content},0,sysdate(),#{community_file,
+		jdbcType=VARCHAR})
 	</insert>
-	
+
 	<select id="getCommCount" resultType="int">
-		select count(*) from community
+		select count(*) from
+		community
 	</select>
-	
+
 	<select id="getCommList" parameterType="int" resultType="comm">
-		select * from community order by no desc limit #{start},10
+		select *
+		from community order by no desc limit #{start},10
 	</select>
-	
+
 	<update id="commUpdateCount" parameterType="int">
-		update community set read_count = read_count+1
+		update community set
+		read_count = read_count+1
 		where no=#{no}
 	</update>
-	
+
 	<select id="getCommunity" parameterType="int" resultType="comm">
-		select * from community where no=#{no}
+		select
+		* from community where no=#{no}
 	</select>
-	
+
 	<update id="commUpdate" parameterType="comm">
-		update community set nick=#{nick},title=#{title},content=#{content},
+		update community set
+		nick=#{nick},title=#{title},content=#{content},
 		reg_date=now(),community_file=#{community_file, jdbcType=VARCHAR}
-		where no=#{no} 
+		where no=#{no}
 	</update>
-	
+
 	<delete id="commDelete" parameterType="int">
-		delete from community where no=#{no}
+		delete from community
+		where no=#{no}
 	</delete>
+
+	<select id="commGetSearch" parameterType="comm" resultType="int">
+		select count(*) from community
+
+		<if test='type.equals("title")'>
+			WHERE title LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='type.equals("content")'>
+			WHERE content LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='type.equals("title_content")'>
+			WHERE title LIKE concat('%', #{keyword}, '%')
+			or content LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='type.equals("nick")'>
+			WHERE nick LIKE concat('%', #{keyword}, '%')
+		</if>
+
+
+	</select>
+
+	<select id="getSearchList" parameterType="int" resultType="comm">
+		select no,title,content,read_count,reg_date,community_file
+		from community
+
+		<if test='type.equals("title")'>
+			WHERE title LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='type.equals("content")'>
+			WHERE content LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='type.equals("title_content")'>
+			WHERE title LIKE concat('%', #{keyword}, '%')
+			or content LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='type.equals("nick")'>
+			WHERE nick LIKE concat('%', #{keyword}, '%')
+		</if>
+		
+	</select>
+
+
 </mapper>	

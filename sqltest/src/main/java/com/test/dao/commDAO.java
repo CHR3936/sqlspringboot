@@ -50,6 +50,18 @@ public class commDAO {
 		return session.delete("commDelete", no);
 	}
 
+	public int commGetSearch(commDTO comm) {
+		// TODO Auto-generated method stub
+		return session.selectOne("commGetSearch", comm);
+	}
+
+	public List<memberDTO> getSearchList(commDTO comm) {
+		// TODO Auto-generated method stub
+		return session.selectList("getSearchList", comm);
+	}
+
+	
+
 	
 	
 }

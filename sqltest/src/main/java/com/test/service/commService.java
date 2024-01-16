@@ -50,6 +50,18 @@ public class commService {
 		// TODO Auto-generated method stub
 		return cd.commDelete(no);
 	}
+
+	public int commGetSearch(commDTO comm) {
+		// TODO Auto-generated method stub
+		return cd.commGetSearch(comm);
+	}
+
+	public List<memberDTO> getSearchList(commDTO comm) {
+		// TODO Auto-generated method stub
+		return cd.getSearchList(comm);
+	}
+
+	
 	
 	
 }

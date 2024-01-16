@@ -22,4 +22,6 @@ public class commDTO {
 	private String community_file;
 	
 
+	private String type;
+	private String keyword;
 }

@@ -1,6 +1,7 @@
 package com.test.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.UUID;
@@ -111,21 +112,22 @@ public class commController {
 		
 		commDTO comm = cs.getCommunity(no);
 		
+		model.addAttribute("no", no);
 		model.addAttribute("comm", comm);
 		model.addAttribute("page", page);
+		
 		return "comm/commcontent";
 	}
 
 	@RequestMapping("commlist")
 	public String commlist(@RequestParam(value = "page", defaultValue = "1") int page,
-						   HttpSession session, memberDTO member ,Model model) {
+							HttpSession session, memberDTO member ,Model model) {
 	
 		
 		
 		int listCount = cs.getCommCount();		
 		
 		
-		int seq = 0;
 		int start = (page - 1) * 10;
 		int limit = 10;
 		int startRow = (page - 1) * limit + 1;
@@ -140,7 +142,7 @@ public class commController {
 		
 		if(endPage > pageCount)
 			endPage = pageCount;
-		
+	
 		model.addAttribute("page", page);
 		model.addAttribute("listCount", listCount);
 		model.addAttribute("commList", commList);
@@ -241,5 +243,49 @@ public class commController {
 	 }
 		
 
-	
+
+	 @RequestMapping("commSearch")
+	 public String commSearch(@RequestParam(value = "page", defaultValue = "1") int page,
+			 				  @RequestParam("type") String type,
+			 				  @RequestParam("keyword") String keyword,
+							  HttpSession session, Model model) {
+		 
+		 System.out.println("type:" + type);
+		 System.out.println("keyword:" + keyword);
+		 
+		 commDTO commDTO = new commDTO();
+		 commDTO.setType(type);
+		 commDTO.setKeyword(keyword);
+		 
+		 
+		 int listCount = cs.commGetSearch(commDTO);
+		 
+		 System.out.println("listCount: " + listCount);
+		 
+		 int start = (page - 1) * 10;
+		 int limit = 10;
+		 int startRow = (page - 1) * limit + 1;
+		 int endRow = page * limit;
+			
+		 List<memberDTO> commSearchList = cs.getSearchList(commDTO);
+			
+		 int pageCount = listCount/limit+((listCount%10 == 0)?0:1);
+			
+		 int startPage = ((page-1)/10) * limit + 1;
+		 int endPage = startPage + 10 - 1;
+			
+		 if(endPage > pageCount)
+			endPage = pageCount;
+		
+		 model.addAttribute("page", page);
+		 model.addAttribute("listCount", listCount);
+		 model.addAttribute("commSearchList", commSearchList);
+		 model.addAttribute("pageCount", pageCount);
+		 model.addAttribute("startPage", startPage);
+		 model.addAttribute("endPage", endPage);
+		 
+		 
+			return "comm/commsearchlist";
+		 
+	 }
 }
