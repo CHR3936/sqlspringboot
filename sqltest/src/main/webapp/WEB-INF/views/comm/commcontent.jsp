@@ -103,8 +103,13 @@ function replydelete(){
 	alert("댓글 삭제 시도");
 }
 </script>
+<style>
+
+</style>
 </head>
 <body>
+<input type = "image" src = "img/Betta.png" width="300">
+
 	<div>제목 ${comm.title }</div>
 	<div>작성자 ${comm.nick }</div>
 	<div>조회수 ${comm.read_count}</div>

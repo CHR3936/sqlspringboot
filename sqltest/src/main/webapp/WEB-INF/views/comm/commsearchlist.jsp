@@ -10,110 +10,11 @@
 	rel="stylesheet"
 	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
 	crossorigin="anonymous">
+<link href = "css/commlist.css" rel="stylesheet">
+	
 <meta charset="UTF-8">
 <title>게시판 목록</title>
-<style>
-table {
-	border : 1px solid inherit;
-	color: inherit; width : 800px;
-	margin-top : 250px;
-	margin-right : 250px;
-	width : 800px;
-	border-spacing: 0;
-}
 
-th, td {
-	border-bottom: 1px solid #3E70A6;
-	padding: 10px;
-	
-}
-
-.num{
-	border-top-left-radius: 5px;
-}
-
-.count{
-	border-top-right-radius: 5px;
-}
-
-.top {
-	background: #569FBF;
-	height: 50px;
-	color: white;
-	text-align: center;
-}
-
-.tbody {
-	text-align: center;
-}
-
-.snick {
-	padding-right: 100px;
-}
-
-a {
-	text-decoration: none;
-}
-
-.commform {
-	top : 500px; 
-}
-
-.headlist{
-  color:#e91e63;
-  font-size:80px;
-  font-weight: bolder;
-  letter-spacing:-3px;
-  text-decoration : none;
-  margin:120px 0 80px 0 ;
-  text-align:center;
-  
-}
-.container1{
- 	margin-top: 100px;
-}
-
- .btn_commform {
-  width: 100px;
-  height: 40px;
-  background: #569FBF;
-  border: none;
-  border-radius: 5px;
-  font-weight: bolder;
-  color : white;
-  margin-left: 120px; 
-  margin-top: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left : 1250px;
-  &:hover {
-    background: rgb(127,127,127);
-    color: #fff;
-  } 
-}
-
-.btn_login{
-  width: 100px;
-  height: 40px;
-  background: #569FBF;
-  border: none;
-  border-radius: 5px;
-  font-weight: bolder;
-  color : white;
-  margin-left: 1250px; 
-  margin-top: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &:hover {
-    background: rgb(127,127,127);
-    color: #fff;
-	
-}
-</style>
 
 </head>
 <body>
