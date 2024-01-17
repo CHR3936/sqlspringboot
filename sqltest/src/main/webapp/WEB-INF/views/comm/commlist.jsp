@@ -13,25 +13,12 @@
 <link href = "css/commlist.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>게시판 목록</title>
+<style>
 
+</style>
 </head>
 <body>
-	<div class="container1" align = "center">
-		<a href="commlist" class="headlist">community</a>
-	</div>
-		<div >
-			<c:if test="${empty sessionScope.nick }">
-				<input type="button" value="로그인"  class="btn_login"
-				onclick="location.href='loginform'">
-			</c:if>
-			<c:if test="${!empty sessionScope.nick }">
-				<div class="snick">
-					<%=session.getAttribute("nick")%>
-					<input type="button" value="로그아웃"
-						onclick="location.href = 'logout'">
-				</div>
-			</c:if>
-		</div>
+	<jsp:include page="../include/header.jsp"/>	
 
 		<div id="list">
 			<table style="margin-left: auto; margin-right: auto;">

@@ -35,9 +35,9 @@ function countingLength(re_content) {
 					
 					content += "<td>" + formattedDate + "</td>";
 					
-					content += "<td>" + item.re_content;
-	 		        content += "<input type =button value = 수정 onclick = 'replyupdate()' >";
-	 		        content += "<input type =button value = 삭제 onclick = 'replydelete()'>"+ "</td></tr></table>";
+					content += "<td id='td_item.reply_no'>" + item.re_content; + "</td>";
+	 		        content += "<td id = 'btn_item.re_no'><input type =button value = 수정 class = 'edit1'  id = 'item.reply_no' >";
+	 		        content += "<input type =button value = 삭제 onclick = 'replydelete()'>"+ "</td></tr></table><br>";
 			    
 	 			});			
 				
@@ -95,9 +95,18 @@ $(document).ready(function(){
 	replylist(${comm.no});
 });
 
-function replyupdate(){
-	alert("댓글 수정 시도");
-}
+$(function() {
+	$('.edit1').click(function() {
+		alert("수정");
+		var id  = $(this).attr('reply_no');  // rno
+		var txt = $('#td_'+id).text(); // replytext
+		$('#td_'+id).html("<textarea rows='3' cols='30' id='tt_"+id+"'>"+txt
+			+"</textarea>");
+		$('#btn_'+id).html(
+		   "<input type='button' value='확인' onclick='up("+id+")'> "
+		  +"<input type='button' value='취소' onclick='lst()'>");
+	});
+});
 
 function replydelete(){
 	alert("댓글 삭제 시도");
@@ -105,29 +114,79 @@ function replydelete(){
 </script>
 <style>
 
+
+.test{
+background: white;
+}
+
+.title{
+	width : 50%;
+	text-align: center;
+	margin-left: 25%;
+	margin-top: 5%;
+	border-style:solid;
+	border-color: #569FBF;
+	border-radius: 7px;
+}
+.nick{
+	width : 50%;
+	text-align: right;
+	margin-top: 2%;
+	margin-left: 25%;
+	border-style:solid;
+	border-color: #569FBF;
+	border-radius: 7px;
+}
+.count{
+	width : 50%;
+	text-align: right;
+	margin-top: 2%;
+	margin-left: 25%;
+	border-style:solid;
+	border-color: #569FBF;
+	border-radius: 7px;
+}
+.date{
+	width : 50%;
+	text-align: right;
+	margin-top: 2%;
+	margin-left: 25%;
+	border-style:solid;
+	border-color: #569FBF;
+	border-radius: 7px;
+}
+
+.content{
+	width : 50%;
+	text-align: center;
+	margin-top: 2%;
+	margin-left: 25%;
+	border-style:solid;
+	border-color: #569FBF;
+	border-radius: 7px;
+}
+
 </style>
 </head>
 <body>
-<input type = "image" src = "img/Betta.png" width="300">
-
-	<div>제목 ${comm.title }</div>
-	<div>작성자 ${comm.nick }</div>
-	<div>조회수 ${comm.read_count}</div>
-	<div>
-		날짜
+<jsp:include page="../include/header.jsp"/>
+	
+	<div class = "title">${comm.title }</div>
+	<div class = "date">
 		<fmt:formatDate value="${comm.reg_date }" pattern="yyyy-MM-dd" />
+		${comm.nick }<br>조회수 : ${comm.read_count}
 	</div>
-	<div>
-		<pre>내용	${comm.content }</pre>
-	</div>
+	<div class = "nick"></div>
+	<div class = "content">
+		<pre>	${comm.content }</pre>
+	
 	<c:if test="${!empty comm.community_file }">
 		<div>
-			업로드 사진 <img
-				src="<%= request.getContextPath() %>/upload/${comm.community_file}"
+		<img src="<%= request.getContextPath() %>/upload/${comm.community_file}"
 				height="200" width="300">
 		</div>
 	</c:if>
-
+	</div>
 	<div align="right">
 		<input type="button" value="목록"
 			onclick="location.href='commlist?page=${page}'"> <input
@@ -136,7 +195,7 @@ function replydelete(){
 		<input type="button" value="삭제"
 			onclick="location.href='commdelete?no=${comm.no}&page=${page} '">
 	</div>
-
+	
 	<div class="cm_write">
 		<input type = "hidden" value = "${sessionScope.nick }" id = "nick1">
 		<input type = "hidden" value = "${comm.no }" id = "no1">

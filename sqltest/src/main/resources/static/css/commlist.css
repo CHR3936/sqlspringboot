@@ -46,57 +46,5 @@ a {
 	top : 500px; 
 }
 
-.headlist{
-  color:#e91e63;
-  font-size:80px;
-  font-weight: bolder;
-  letter-spacing:-3px;
-  text-decoration : none;
-  margin:120px 0 80px 0 ;
-  text-align:center;
-  
-}
-.container1{
- 	margin-top: 100px;
-}
 
- .btn_commform {
-  width: 100px;
-  height: 40px;
-  background: #569FBF;
-  border: none;
-  border-radius: 5px;
-  font-weight: bolder;
-  color : white;
-  margin-left: 120px; 
-  margin-top: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left : 1250px;
-  &:hover {
-    background: rgb(127,127,127);
-    color: #fff;
-  } 
-}
 
-.btn_login{
-  width: 100px;
-  height: 40px;
-  background: #569FBF;
-  border: none;
-  border-radius: 5px;
-  font-weight: bolder;
-  color : white;
-  margin-left: 1250px; 
-  margin-top: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &:hover {
-    background: rgb(127,127,127);
-    color: #fff;
-	
-}
