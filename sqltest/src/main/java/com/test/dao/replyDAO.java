@@ -25,4 +25,16 @@ public class replyDAO {
 		return rses.selectList("getReplyList", no);
 	}
 
+
+	public int replyUpdate(int reply_no) {
+		// TODO Auto-generated method stub
+		return rses.update("replyUpdate", reply_no);
+	}
+
+
+	public int replyDelete(replyDTO reply) {
+		// TODO Auto-generated method stub
+		return rses.delete("replyDelete", reply);
+	}
+
 }

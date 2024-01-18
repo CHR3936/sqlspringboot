@@ -24,6 +24,16 @@ public class replyService {
 		return rd.getReplyList(no);
 	}
 
+	public int replyUpdate(int reply_no) {
+		// TODO Auto-generated method stub
+		return rd.replyUpdate(reply_no);
+	}
+
+	public int replyDelete(replyDTO reply) {
+		// TODO Auto-generated method stub
+		return rd.replyDelete(reply);
+	}
+
 
 
 

@@ -8,7 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<style>
+.edit1{
+ width : 50px;
+}
+</style>
 <script>
 function countingLength(re_content) {
     if (re_content.value.length > 300) {
@@ -19,13 +24,70 @@ function countingLength(re_content) {
     document.getElementById('counter').innerText = re_content.value.length + '/300자';
 }
 
+// function replyedit(index) {
+//     alert("수정");
+//     alert(index);
+
+//     // 두 번째 td의 텍스트 내용 가져오기
+//     var txt = $('#replyno_0').text();
+// //    var txt = 'test';
+//     alert("두 번째 td의 내용: " + txt);
+
+//     // 내용을 textarea로 교체하기
+//     $('#replyno_'+index).html("<textarea rows='3' cols='30' id='tt_" + index + "'>" + txt + "</textarea>");
+
+//     // 버튼을 "확인"으로 변경하고 "취소" 버튼 추가하기
+//     $('#btn_' + index).html(
+//         "<input type='button' value='확인' onclick='up(" + index + ")'> " +
+//         "<input type='button' value='취소' onclick='lst()'>"
+//     );
+// }
+
+function replyedit(reply_no) {
+	alert(reply_no);
+	
+	window.open("","edit","width=300, height=300");
+	
+	
+}
+
+
+
+
+function replydelete(no,reply_no){
+	alert(no);
+	alert(reply_no);
+	
+	var formData = {
+	        're_no': no, 			
+	        'reply_no': reply_no
+	    };
+	
+	$.ajax({
+		type : "DELETE",
+		url : "${pageContext.request.contextPath}/reply/replydelete/",
+		contentType: 'application/json',  			// 데이터 타입을 JSON으로 설정
+		data : JSON.stringify(formData),  			// 데이터를 JSON 문자열로 변환하여 전송
+		success : function(result){
+			if(result == 1){
+				alert("삭제성공");
+			}else{
+				alert("삭제실패");
+			}
+			replylist(no);  						// 글삭제후 목록 페이지로 이동
+		}	
+	});	
+	
+	
+}
+
 
 	function replylist(no){
 		$.ajax({
 			type : "get",
 			url : "${pageContext.request.contextPath}/reply/replylist/"+no,
 			success : function(result){
-				var content = "<table><tr><th>작성자</th><th>날짜</th><th>내용</th></tr>"
+				var content = "<table border=1 width=750><tr><th>작성자</th><th>내용</th><th>날짜</th></tr>"
 				$.each(result.replylist,function(index,item){
 					content += "<tr><td>" + item.re_nick + "</td>";
 					
@@ -33,11 +95,11 @@ function countingLength(re_content) {
 					var formattedDate = date.getFullYear() + "-" + addZero(date.getDate()) +
 					" " + addZero(date.getHours()) + ":" + addZero(date.getMinutes()) + ":" + addZero(date.getSeconds());
 					
-					content += "<td>" + formattedDate + "</td>";
+					content += "<td id='replyno_'"+index+">"+item.re_content+"</td>";
 					
-					content += "<td id='td_item.reply_no'>" + item.re_content; + "</td>";
-	 		        content += "<td id = 'btn_item.re_no'><input type =button value = 수정 class = 'edit1'  id = 'item.reply_no' >";
-	 		        content += "<input type =button value = 삭제 onclick = 'replydelete()'>"+ "</td></tr></table><br>";
+					content += "<td>" + formattedDate + "</td>";  // id='edit_'+index
+					content += "<td><input type='button' id='btn_" + index + "' value='편집' onclick='replyedit(" + item.reply_no + ")'>";
+	 		        content += "<input type =button value = 삭제 onclick = 'replydelete("+item.re_no+','+item.reply_no+")'>"+ "</td></tr><br>";
 			    
 	 			});			
 				
@@ -78,7 +140,7 @@ $(function(){
 				success : function(result){
 					if(result == 1){
 						alert("댓글 작성");
-						$("#re_content1").val= " ";
+						$("#re_content1").val('');
 					}else{
 						alert("댓글 실패");
 					}
@@ -95,75 +157,118 @@ $(document).ready(function(){
 	replylist(${comm.no});
 });
 
-$(function() {
-	$('.edit1').click(function() {
-		alert("수정");
-		var id  = $(this).attr('reply_no');  // rno
-		var txt = $('#td_'+id).text(); // replytext
-		$('#td_'+id).html("<textarea rows='3' cols='30' id='tt_"+id+"'>"+txt
-			+"</textarea>");
-		$('#btn_'+id).html(
-		   "<input type='button' value='확인' onclick='up("+id+")'> "
-		  +"<input type='button' value='취소' onclick='lst()'>");
-	});
-});
 
-function replydelete(){
-	alert("댓글 삭제 시도");
-}
 </script>
 <style>
-
+i{
+	width : 100px;
+}
 
 .test{
 background: white;
 }
 
-.title{
-	width : 50%;
-	text-align: center;
-	margin-left: 25%;
+.first{
+	width : 70%;
+	text-align: left;
+	margin-left: 15%;
 	margin-top: 5%;
-	border-style:solid;
-	border-color: #569FBF;
-	border-radius: 7px;
+	font-size: 25px;
+	
 }
+hr{
+	width: 70%;
+}
+
+.second{
+	width :75%;
+	margin-left: 11%;
+	font-size: 17px;
+}
+
 .nick{
-	width : 50%;
-	text-align: right;
-	margin-top: 2%;
-	margin-left: 25%;
-	border-style:solid;
-	border-color: #569FBF;
-	border-radius: 7px;
+	margin-left: 5.5%;
 }
-.count{
-	width : 50%;
-	text-align: right;
-	margin-top: 2%;
-	margin-left: 25%;
-	border-style:solid;
-	border-color: #569FBF;
-	border-radius: 7px;
-}
+
 .date{
-	width : 50%;
+	float: right;
+	margin-right: 1.5%; 
+}
+
+.third{
+	width : 70%;
+	height : 20px;
 	text-align: right;
-	margin-top: 2%;
-	margin-left: 25%;
-	border-style:solid;
-	border-color: #569FBF;
-	border-radius: 7px;
+	margin-top:0.5%;
+	margin-left: 14.5%;
+	margin-bottom :5%;
+	font-size: 17px;
+	
 }
 
 .content{
-	width : 50%;
-	text-align: center;
+	width : 55%;
+	height : 55px;
 	margin-top: 2%;
-	margin-left: 25%;
-	border-style:solid;
-	border-color: #569FBF;
-	border-radius: 7px;
+	margin-left: 15%;
+	margin-bottom : 10%;
+	font-size: 17px;
+	
+}
+
+.edit_btn{
+	width : 75px;
+	height: 35px;
+	border-color:#569FBF; 
+	border-radius:3px;
+	background:#61A8C4;
+	color: white;
+	font-size:15px;
+    font-weight: bolder;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow:0 15px 30px rgba(#e91e63,.36);    
+}
+
+.edit_btn:hover{
+}
+
+.delete_btn{
+	width : 75px;
+	height: 35px;
+	border-color:#569FBF; 
+	border-radius:4px;
+	background:#61A8C4;
+	color: white;
+	font-size:15px;
+    font-weight: bolder;
+    font-family: 'Montserrat', sans-serif;
+     box-shadow:0 15px 30px rgba(#e91e63,.36);
+}
+button{
+	width : 75px;
+	height: 35px;
+	border-color:#569FBF; 
+	border-radius:4px;
+	background:#61A8C4;
+	color: white;
+	font-size:15px;
+    font-weight: bolder;
+    font-family: 'Montserrat', sans-serif;
+     box-shadow:0 15px 30px rgba(#e91e63,.36);
+}
+
+.reply_write{
+	width: 70%;
+	margin-left: 15%;
+	margin-bottom: 2%;
+}
+
+.replylist{
+	margin-left: 15%;
+}
+
+textarea {
+	resize: none;
 }
 
 </style>
@@ -171,14 +276,21 @@ background: white;
 <body>
 <jsp:include page="../include/header.jsp"/>
 	
-	<div class = "title">${comm.title }</div>
-	<div class = "date">
-		<fmt:formatDate value="${comm.reg_date }" pattern="yyyy-MM-dd" />
-		${comm.nick }<br>조회수 : ${comm.read_count}
+	<div class = "first">${comm.title }</div>
+	<hr>
+	<div class = "second">
+	<span class="nick">${comm.nick }</span>
+	<span class="date">
+	<fmt:formatDate value="${comm.reg_date }" pattern="yyyy-MM-dd" />
+	</span>
 	</div>
-	<div class = "nick"></div>
+	<div class = "third">
+		
+		<i class="bi bi-eyeglasses"></i> ${comm.read_count}
+		<i class="bi bi-chat-dots"></i>		
+	</div>
 	<div class = "content">
-		<pre>	${comm.content }</pre>
+	<pre>${comm.content }</pre>
 	
 	<c:if test="${!empty comm.community_file }">
 		<div>
@@ -187,16 +299,14 @@ background: white;
 		</div>
 	</c:if>
 	</div>
-	<div align="right">
-		<input type="button" value="목록"
-			onclick="location.href='commlist?page=${page}'"> <input
-			type="button" value="수정"
+	<div align="center">
+		 <input type="button" value="수정" class = "edit_btn"
 			onclick="location.href='commupdateform?no=${comm.no}&page=${page}'">
-		<input type="button" value="삭제"
+		<input type="button" value="삭제" class = "delete_btn"
 			onclick="location.href='commdelete?no=${comm.no}&page=${page} '">
 	</div>
 	
-	<div class="cm_write">
+	<div class="reply_write">
 		<input type = "hidden" value = "${sessionScope.nick }" id = "nick1">
 		<input type = "hidden" value = "${comm.no }" id = "no1">
 		<fieldset>
@@ -207,16 +317,16 @@ background: white;
 				<p>
 					<textarea id="re_content1" name="re_content"
 						onkeyup="countingLength(this);" cols="90" rows="4"
-						placeholder="댓글을 입력해 주세요."></textarea>
+						placeholder="댓글을 입력해 주세요." ></textarea>
 				</p>
 				<div align = "right">
-				<span><button type="button" class="btns" id = "replyinsert">등 록</button>
+				<span><button type="button" class="btns" id = "replyinsert" class ="insert_btn">등 록</button>
 						<i id="counter">0/300자</i>
 						</span>
 				</div>
 			</div>
 		</fieldset>
 	</div>
-	<div id="replylist"></div>
+	<div id="replylist" class = "replylist"></div>
 </body>
 </html>

@@ -34,7 +34,6 @@ img{
   letter-spacing:-3px;
   text-decoration : none;
   text-align:center;
-  top : 150%;
 }
 
 a{
@@ -46,11 +45,14 @@ header{
 	background: white;
 	border-radius: 5px;
 }
+
+
 </style>
 </head>
 <body>
 <header>
 	<a href ="commlist" class = "headlist"><img src="img/Betta.png">Betta</a>
+	
 		<c:if test="${empty sessionScope.nick }">
 		<a href="loginform" class = "login">로그인</a>
 		</c:if>

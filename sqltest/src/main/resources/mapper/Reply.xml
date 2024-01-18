@@ -4,13 +4,21 @@
 <mapper namespace="Reply">
 
 	<insert id="replyInsert" parameterType="reply">
-	insert into reply(re_no,re_nick,re_content,create_date)
-	values(#{re_no},#{re_nick},#{re_content},now())
+	insert into reply(re_no,re_nick,re_content,create_date,re_delete)
+	values(#{re_no},#{re_nick},#{re_content},now(),0)
 	</insert>
 	
 	<select id="getReplyList" parameterType="int" resultType="reply">
 		select * from reply where re_no=#{no}
 	</select>
 
+	<update id="replyUpdate" parameterType="reply">
+		update reply set re_no=#{re_no},re_nick=#{re_nick},re_content=#{re_content},
+		modified_date=now(),
+	</update>
+	
+	<delete id="replyDelete" parameterType="reply">
+		delete from reply where reply_no=#{reply_no}
+	</delete>
 
 </mapper>	

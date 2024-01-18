@@ -4,13 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,5 +56,29 @@ public class replyController {
 		return new ResponseEntity<>(map,HttpStatus.OK);
 	}
 
+	@PutMapping("/replyupdate/{reply_no}")
+	@ResponseBody
+	public ResponseEntity<Integer> replyupdate(@RequestBody replyDTO reply){
+		
+		int result = rs.replyUpdate(reply.getReply_no());
+	
+		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/replydelete")
+	@ResponseBody
+	public ResponseEntity<Integer> replydelete(@RequestBody replyDTO reply,
+											   HttpSession session){
+		
+		String nick =(String)session.getAttribute("nick");
+		
+		
+		System.out.println("replydelete 진입");	
+		
+		int result = rs.replyDelete(reply);
+		System.out.println("result : " + result);
+
+		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
 	
 }
