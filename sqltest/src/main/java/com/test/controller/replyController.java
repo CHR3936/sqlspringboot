@@ -70,15 +70,27 @@ public class replyController {
 	public ResponseEntity<Integer> replydelete(@RequestBody replyDTO reply,
 											   HttpSession session){
 		
-		String nick =(String)session.getAttribute("nick");
+		String snick =(String)session.getAttribute("nick");
+		System.out.println(snick);
 		
+		String nick = rs.replySelect(reply.getReply_no());
+		System.out.println(nick);
 		
 		System.out.println("replydelete 진입");	
 		
-		int result = rs.replyDelete(reply);
-		System.out.println("result : " + result);
-
+		
+		if(snick.equals(nick)) {
+			int result = rs.replyDelete(reply);
+			System.out.println("result : " + result);			
+		
 		return new ResponseEntity<>(result,HttpStatus.OK);
+		
+		}else {
+			int result = -1;
+			return new ResponseEntity<>(result,HttpStatus.OK);
+		}
+			
+		
 	}
 	
 }

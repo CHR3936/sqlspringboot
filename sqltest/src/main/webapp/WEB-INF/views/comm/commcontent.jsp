@@ -8,10 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <style>
-.edit1{
- width : 50px;
+.edit1 {
+	width: 50px;
 }
 </style>
 <script>
@@ -70,9 +71,9 @@ function replydelete(no,reply_no){
 		data : JSON.stringify(formData),  			// 데이터를 JSON 문자열로 변환하여 전송
 		success : function(result){
 			if(result == 1){
-				alert("삭제성공");
+				alert("삭제되었습니다.");
 			}else{
-				alert("삭제실패");
+				alert("삭제 권한이 없습니다.");
 			}
 			replylist(no);  						// 글삭제후 목록 페이지로 이동
 		}	
@@ -87,9 +88,9 @@ function replydelete(no,reply_no){
 			type : "get",
 			url : "${pageContext.request.contextPath}/reply/replylist/"+no,
 			success : function(result){
-				var content = "<table border=1 width=750><tr><th>작성자</th><th>내용</th><th>날짜</th></tr>"
+				var content = "<table width=750 height = 120><tr><th>작성자</th><th>내용</th><th>날짜</th></tr>"
 				$.each(result.replylist,function(index,item){
-					content += "<tr><td>" + item.re_nick + "</td>";
+					content += "<tr><td>"+item.re_nick +"</td>";
 					
 					var date = new Date(item.create_date);
 					var formattedDate = date.getFullYear() + "-" + addZero(date.getDate()) +
@@ -97,9 +98,9 @@ function replydelete(no,reply_no){
 					
 					content += "<td id='replyno_'"+index+">"+item.re_content+"</td>";
 					
-					content += "<td>" + formattedDate + "</td>";  // id='edit_'+index
-					content += "<td><input type='button' id='btn_" + index + "' value='편집' onclick='replyedit(" + item.reply_no + ")'>";
-	 		        content += "<input type =button value = 삭제 onclick = 'replydelete("+item.re_no+','+item.reply_no+")'>"+ "</td></tr><br>";
+					content += "<td>"+formattedDate+"</td>";  // id='edit_'+index
+					content += "<td><input type='button' id='btn_" + index + "' value='수정' class='redit_btn' onclick='replyedit(" + item.reply_no + ")'>";
+	 		        content += "<input type =button value = 삭제 class='rdelete_btn' onclick = 'replydelete("+item.re_no+','+item.reply_no+")'>"+ "</td></tr><br>";
 			    
 	 			});			
 				
@@ -118,7 +119,6 @@ function replydelete(no,reply_no){
 $(function(){	
 	
 	$("#replyinsert").click(function(){
-		alert("댓글 작성시도");
 		
 		if($("#re_content1").val() == ""){
 			alert("내용을 입력해주세요");
@@ -139,10 +139,10 @@ $(function(){
 				data : JSON.stringify(formData),
 				success : function(result){
 					if(result == 1){
-						alert("댓글 작성");
+						alert("작성되었습니다.");
 						$("#re_content1").val('');
 					}else{
-						alert("댓글 실패");
+						alert("작성에 실패했습니다.");
 					}
 					replylist($("#no1").val());
 				}
@@ -160,173 +160,201 @@ $(document).ready(function(){
 
 </script>
 <style>
-i{
-	width : 100px;
+i {
+	width: 100px;
 }
 
-.test{
-background: white;
+.test {
+	background: white;
 }
 
-.first{
-	width : 70%;
+.first {
+	width: 70%;
 	text-align: left;
 	margin-left: 15%;
 	margin-top: 5%;
 	font-size: 25px;
-	
 }
-hr{
+
+hr {
 	width: 70%;
 }
 
-.second{
-	width :75%;
+.second {
+	width: 75%;
 	margin-left: 11%;
 	font-size: 17px;
 }
 
-.nick{
+.nick {
 	margin-left: 5.5%;
 }
 
-.date{
+.date {
 	float: right;
-	margin-right: 1.5%; 
+	margin-right: 1.5%;
 }
 
-.third{
-	width : 70%;
-	height : 20px;
+.third {
+	width: 70%;
+	height: 20px;
 	text-align: right;
-	margin-top:0.5%;
+	margin-top: 0.5%;
 	margin-left: 14.5%;
-	margin-bottom :5%;
+	margin-bottom: 5%;
 	font-size: 17px;
-	
 }
 
-.content{
-	width : 55%;
-	height : 55px;
+.content {
+	width: 55%;
+	height: 55px;
 	margin-top: 2%;
 	margin-left: 15%;
-	margin-bottom : 10%;
+	margin-bottom: 10%;
 	font-size: 17px;
-	
 }
 
-.edit_btn{
-	width : 75px;
+.edit_btn {
+	width: 75px;
 	height: 35px;
-	border-color:#569FBF; 
-	border-radius:3px;
-	background:#61A8C4;
+	border-color: #569FBF;
+	border-radius: 3px;
+	background: #61A8C4;
 	color: white;
-	font-size:15px;
-    font-weight: bolder;
-    font-family: 'Montserrat', sans-serif;
-    box-shadow:0 15px 30px rgba(#e91e63,.36);    
+	font-size: 15px;
+	font-weight: bolder;
+	font-family: 'Montserrat', sans-serif;
+	box-shadow: 0 15px 30px rgba(#e91e63, .36);
 }
 
-.edit_btn:hover{
-}
-
-.delete_btn{
-	width : 75px;
+.delete_btn {
+	width: 75px;
 	height: 35px;
-	border-color:#569FBF; 
-	border-radius:4px;
-	background:#61A8C4;
+	border-color: #569FBF;
+	border-radius: 4px;
+	background: #61A8C4;
 	color: white;
-	font-size:15px;
-    font-weight: bolder;
-    font-family: 'Montserrat', sans-serif;
-     box-shadow:0 15px 30px rgba(#e91e63,.36);
-}
-button{
-	width : 75px;
-	height: 35px;
-	border-color:#569FBF; 
-	border-radius:4px;
-	background:#61A8C4;
-	color: white;
-	font-size:15px;
-    font-weight: bolder;
-    font-family: 'Montserrat', sans-serif;
-     box-shadow:0 15px 30px rgba(#e91e63,.36);
+	font-size: 15px;
+	font-weight: bolder;
+	font-family: 'Montserrat', sans-serif;
+	box-shadow: 0 15px 30px rgba(#e91e63, .36);
 }
 
-.reply_write{
+button {
+	width: 75px;
+	height: 35px;
+	border-color: #569FBF;
+	border-radius: 4px;
+	background: #61A8C4;
+	color: white;
+	font-size: 15px;
+	font-weight: bolder;
+	font-family: 'Montserrat', sans-serif;
+	box-shadow: 0 15px 30px rgba(#e91e63, .36);
+}
+
+.reply_write {
 	width: 70%;
 	margin-left: 15%;
 	margin-bottom: 2%;
 }
 
-.replylist{
+.replylist {
 	margin-left: 15%;
 }
 
 textarea {
 	resize: none;
+	width: 90%;
 }
 
+tr, td {
+	text-align: center;
+}
+
+.replyinfo {
+	width: 80%;
+}
+
+.redit_btn {
+	width: 75px;
+	height: 35px;
+	border-color: #569FBF;
+	border-radius: 4px;
+	background: #61A8C4;
+	color: white;
+	font-size: 15px;
+	font-weight: bolder;
+	font-family: 'Montserrat', sans-serif;
+	box-shadow: 0 15px 30px rgba(#e91e63, .36);
+}
+
+.rdelete_btn {
+	width: 75px;
+	height: 35px;
+	border-color: #569FBF;
+	border-radius: 4px;
+	background: #61A8C4;
+	color: white;
+	font-size: 15px;
+	font-weight: bolder;
+	font-family: 'Montserrat', sans-serif;
+	box-shadow: 0 15px 30px rgba(#e91e63, .36);
+}
 </style>
 </head>
 <body>
-<jsp:include page="../include/header.jsp"/>
-	
-	<div class = "first">${comm.title }</div>
+	<jsp:include page="../include/header.jsp" />
+
+	<div class="first">${comm.title }</div>
 	<hr>
-	<div class = "second">
-	<span class="nick">${comm.nick }</span>
-	<span class="date">
-	<fmt:formatDate value="${comm.reg_date }" pattern="yyyy-MM-dd" />
-	</span>
+	<div class="second">
+		<span class="nick">${comm.nick }</span> <span class="date"> <fmt:formatDate
+				value="${comm.reg_date }" pattern="yyyy-MM-dd" />
+		</span>
 	</div>
-	<div class = "third">
-		
-		<i class="bi bi-eyeglasses"></i> ${comm.read_count}
-		<i class="bi bi-chat-dots"></i>		
+	<div class="third">
+
+		<i class="bi bi-eyeglasses"></i> ${comm.read_count} <i
+			class="bi bi-chat-dots"></i> ${replyCount }
 	</div>
-	<div class = "content">
-	<pre>${comm.content }</pre>
-	
-	<c:if test="${!empty comm.community_file }">
-		<div>
-		<img src="<%= request.getContextPath() %>/upload/${comm.community_file}"
-				height="200" width="300">
-		</div>
-	</c:if>
+	<div class="content">
+		<pre>${comm.content }</pre>
+
+		<c:if test="${!empty comm.community_file }">
+			<div>
+				<img
+					src="<%= request.getContextPath() %>/upload/${comm.community_file}"
+					height="200" width="300">
+			</div>
+		</c:if>
 	</div>
 	<div align="center">
-		 <input type="button" value="수정" class = "edit_btn"
+		<input type="button" value="수정" class="edit_btn"
 			onclick="location.href='commupdateform?no=${comm.no}&page=${page}'">
-		<input type="button" value="삭제" class = "delete_btn"
+		<input type="button" value="삭제" class="delete_btn"
 			onclick="location.href='commdelete?no=${comm.no}&page=${page} '">
 	</div>
-	
+
 	<div class="reply_write">
-		<input type = "hidden" value = "${sessionScope.nick }" id = "nick1">
-		<input type = "hidden" value = "${comm.no }" id = "no1">
-		<fieldset>
-			<legend class="skipinfo">댓글 입력</legend>
-			<div>session :${sessionScope.nick }</div>
-		
+		<input type="hidden" value="${sessionScope.nick }" id="nick1">
+		<input type="hidden" value="${comm.no }" id="no1">
+		<fieldset class="replyinfo">
+			<legend>댓글 입력</legend>
+
 			<div class="cm_input">
 				<p>
 					<textarea id="re_content1" name="re_content"
 						onkeyup="countingLength(this);" cols="90" rows="4"
-						placeholder="댓글을 입력해 주세요." ></textarea>
+						placeholder="댓글을 입력해 주세요."></textarea>
 				</p>
-				<div align = "right">
-				<span><button type="button" class="btns" id = "replyinsert" class ="insert_btn">등 록</button>
-						<i id="counter">0/300자</i>
-						</span>
+				<div align="right">
+					<span><button type="button" class="btns" id="replyinsert"
+							class="insert_btn">등 록</button> <i id="counter">0/300자</i> </span>
 				</div>
 			</div>
 		</fieldset>
 	</div>
-	<div id="replylist" class = "replylist"></div>
+	<div id="replylist" class="replylist"></div>
 </body>
 </html>

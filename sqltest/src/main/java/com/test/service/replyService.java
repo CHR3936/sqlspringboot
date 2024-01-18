@@ -34,6 +34,16 @@ public class replyService {
 		return rd.replyDelete(reply);
 	}
 
+	public String replySelect(int reply_no) {
+		// TODO Auto-generated method stub
+		return rd.replySelect(reply_no);
+	}
+
+	public int getReplyCount(int no) {
+		// TODO Auto-generated method stub
+		return rd.getReplyCount(no);
+	}
+
 
 
 

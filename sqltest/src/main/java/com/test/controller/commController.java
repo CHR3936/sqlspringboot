@@ -22,13 +22,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.test.model.commDTO;
 import com.test.model.memberDTO;
+import com.test.model.replyDTO;
 import com.test.service.commService;
+import com.test.service.replyService;
 
 @Controller
 public class commController {
 
 	@Autowired
 	private commService cs;
+	private replyService rs;
 	
 	@RequestMapping("commform")
 	public String commform() {
@@ -105,6 +108,7 @@ public class commController {
 	public String commcontent(@RequestParam("no") int no,
 							  @RequestParam("page") String page,
 							  memberDTO member,
+							  replyDTO reply,
  							  HttpSession session,
 							  Model model) {
 
@@ -112,6 +116,9 @@ public class commController {
 		
 		commDTO comm = cs.getCommunity(no);
 		
+		//int replyCount = rs.getReplyCount(no);
+		
+		//model.addAttribute("replyCount", replyCount);
 		model.addAttribute("no", no);
 		model.addAttribute("comm", comm);
 		model.addAttribute("page", page);

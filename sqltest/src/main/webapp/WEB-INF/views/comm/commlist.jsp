@@ -49,7 +49,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
-				<div>
+				<div class="write_btn">
 				<input type="button" value="글쓰기" class="btn_commform"
 						onclick="location.href = 'commform' " >
 				</div>
