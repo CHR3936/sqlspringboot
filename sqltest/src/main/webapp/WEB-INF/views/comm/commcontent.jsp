@@ -44,13 +44,13 @@ function countingLength(re_content) {
 //     );
 // }
 
-function replyedit(reply_no) {
+/* function replyedit(reply_no) {
 	alert(reply_no);
 	
 	window.open("","edit","width=300, height=300");
 	
 	
-}
+} */
 
 
 
@@ -99,7 +99,7 @@ function replydelete(no,reply_no){
 					content += "<td id='replyno_'"+index+">"+item.re_content+"</td>";
 					
 					content += "<td>"+formattedDate+"</td>";  // id='edit_'+index
-					content += "<td><input type='button' id='btn_" + index + "' value='수정' class='redit_btn' onclick='replyedit(" + item.reply_no + ")'>";
+					content += "<td><input type='button' id='btn_" + index + "' value='수정' class='openBtn' onclick='replyedit(" + item.reply_no + ")'>";
 	 		        content += "<input type =button value = 삭제 class='rdelete_btn' onclick = 'replydelete("+item.re_no+','+item.reply_no+")'>"+ "</td></tr><br>";
 			    
 	 			});			
@@ -301,10 +301,57 @@ tr, td {
 	font-family: 'Montserrat', sans-serif;
 	box-shadow: 0 15px 30px rgba(#e91e63, .36);
 }
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal .bg {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modalBox {
+	position: absolute;
+	background-color: #fff;
+	width: 400px;
+	height: 200px;
+	padding: 15px;
+}
+
+.modalBox button {
+	display: block;
+	width: 80px;
+	margin: 0 auto;
+}
+
+.hidden {
+	display: none;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
+	<div class="modal hidden">
+		<div class="bg"></div>
+		<div class="modalBox">
+			<p>내용</p>
+			<input type="button" value="수정"> <input type="button"
+				value="취소" class="closeBtn">
+		</div>
+	</div>
+	<div class="modal">
+		<input type="text" placeholder="작성자명"> <input type="text"
+			placeholder="댓글내용">
+	</div>
 
 	<div class="first">${comm.title }</div>
 	<hr>
@@ -357,4 +404,18 @@ tr, td {
 	</div>
 	<div id="replylist" class="replylist"></div>
 </body>
+<script>
+const open = () => {
+    document.querySelector(".modal").classList.remove("hidden");
+  }
+
+const close = () => {
+    document.querySelector(".modal").classList.add("hidden");
+  }
+
+  document.querySelector(".openBtn").addEventListener("click", open);
+  document.querySelector(".closeBtn").addEventListener("click", close);
+  document.querySelector(".bg").addEventListener("click", close);
+
+</script>
 </html>

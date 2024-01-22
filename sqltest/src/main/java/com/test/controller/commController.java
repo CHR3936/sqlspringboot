@@ -295,4 +295,9 @@ public class commController {
 			return "comm/commsearchlist";
 		 
 	 }
+	 
+	 @RequestMapping("test")
+	 public String test() {
+		 return "test";
+	 }
 }
