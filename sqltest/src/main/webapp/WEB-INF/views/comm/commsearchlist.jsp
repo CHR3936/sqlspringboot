@@ -10,30 +10,13 @@
 	rel="stylesheet"
 	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
 	crossorigin="anonymous">
-<link href = "css/commlist.css" rel="stylesheet">
-	
+<link href = "css/commlist.css" rel="stylesheet">	
 <meta charset="UTF-8">
 <title>게시판 목록</title>
 
-
 </head>
 <body>
-	<div class="container1" align = "center">
-		<a href="commlist" class="headlist">community</a>
-	</div>
-		<div >
-			<c:if test="${empty sessionScope.nick }">
-				<input type="button" value="로그인"  class="btn_login"
-				onclick="location.href='loginform'">
-			</c:if>
-			<c:if test="${!empty sessionScope.nick }">
-				<div class="snick">
-					<%=session.getAttribute("nick")%>
-					<input type="button" value="로그아웃"
-						onclick="location.href = 'logout'">
-				</div>
-			</c:if>
-		</div>
+<jsp:include page="../include/header.jsp" />
 
 		<div id="list">
 			<table style="margin-left: auto; margin-right: auto;">
@@ -65,12 +48,12 @@
 				</tbody>
 			</table>
 				<div>
-				<input type="button" value="글쓰기" class="btn_commform"
+				<input type="button" value="글쓰기" class="commwrite_Btn"
 						onclick="location.href = 'commform' " >
 				</div>
 				
 		</div>
-		<div align = "center">
+		<div align = "center" class = "commsearch">
 		<form action="commSearch" method="post">
 				<select name = "type">
 					<option value ="title" >제목</option>

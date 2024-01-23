@@ -43,10 +43,4 @@ public class replyDAO {
 		return rses.selectOne("replySelect", reply_no);
 	}
 
-
-	public int getReplyCount(int no) {
-		// TODO Auto-generated method stub
-		return rses.selectOne("getReplyCount",no);
-	}
-
 }

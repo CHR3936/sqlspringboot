@@ -39,12 +39,5 @@ public class replyService {
 		return rd.replySelect(reply_no);
 	}
 
-	public int getReplyCount(int no) {
-		// TODO Auto-generated method stub
-		return rd.getReplyCount(no);
-	}
-
-
-
-
+	
 }

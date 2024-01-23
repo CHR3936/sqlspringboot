@@ -25,8 +25,5 @@
 		select re_nick from reply where reply_no=#{reply_no}
 	</select>
 	
-	<select id="getReplyCount" resultType="int">
-		select count(*) from reply where re_no=#{no}
-	</select>
 
 </mapper>	

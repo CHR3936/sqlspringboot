@@ -10,12 +10,9 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-<style>
-.edit1 {
-	width: 50px;
-}
-</style>
+<link href="css/commcontent.css" rel="stylesheet">
 <script>
+/* 댓글 유효성 검사 */
 function countingLength(re_content) {
     if (re_content.value.length > 300) {
         alert('댓글을 300자 이하로 입력해 주세요.');
@@ -54,10 +51,8 @@ function countingLength(re_content) {
 
 
 
-
+/* 댓글 삭제 */
 function replydelete(no,reply_no){
-	alert(no);
-	alert(reply_no);
 	
 	var formData = {
 	        're_no': no, 			
@@ -70,8 +65,11 @@ function replydelete(no,reply_no){
 		contentType: 'application/json',  			// 데이터 타입을 JSON으로 설정
 		data : JSON.stringify(formData),  			// 데이터를 JSON 문자열로 변환하여 전송
 		success : function(result){
+			
 			if(result == 1){
 				alert("삭제되었습니다.");
+			}else if(result == -2){
+				alert("로그인을 해주세요");
 			}else{
 				alert("삭제 권한이 없습니다.");
 			}
@@ -82,8 +80,8 @@ function replydelete(no,reply_no){
 	
 }
 
-
-	function replylist(no){
+/* 댓글 리스트 불러오기 */
+function replylist(no){
 		$.ajax({
 			type : "get",
 			url : "${pageContext.request.contextPath}/reply/replylist/"+no,
@@ -99,8 +97,8 @@ function replydelete(no,reply_no){
 					content += "<td id='replyno_'"+index+">"+item.re_content+"</td>";
 					
 					content += "<td>"+formattedDate+"</td>";  // id='edit_'+index
-					content += "<td><input type='button' id='btn_" + index + "' value='수정' class='openBtn' onclick='replyedit(" + item.reply_no + ")'>";
-	 		        content += "<input type =button value = 삭제 class='rdelete_btn' onclick = 'replydelete("+item.re_no+','+item.reply_no+")'>"+ "</td></tr><br>";
+					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(" + item.reply_no + ")'>";
+	 		        content += "<input type =button value = 삭제 class='rdelete_Btn' onclick = 'replydelete("+item.re_no+','+item.reply_no+")'>"+ "</td></tr><br>";
 			    
 	 			});			
 				
@@ -109,13 +107,13 @@ function replydelete(no,reply_no){
 	 	});
 	}
 
-	//10보다 작은 숫자에 0을 추가하는 함수
-	function addZero(number) {
+/* 10보다 작은 숫자에 0을 추가하는 함수 */	
+function addZero(number) {
 	     return number < 10 ? "0" + number : number;
-	}
+}
 
 
-    
+/* 댓글 입력 */    
 $(function(){	
 	
 	$("#replyinsert").click(function(){
@@ -141,8 +139,10 @@ $(function(){
 					if(result == 1){
 						alert("작성되었습니다.");
 						$("#re_content1").val('');
+					}else if(result == -2){
+						alert("로그인을 해주세요");
 					}else{
-						alert("작성에 실패했습니다.");
+						alert("작성에 실패했습니다.");						
 					}
 					replylist($("#no1").val());
 				}
@@ -153,206 +153,17 @@ $(function(){
 	});
 });
 
+/* 댓글 목록 요청하기 */
 $(document).ready(function(){
 	replylist(${comm.no});
 });
 
 
 </script>
-<style>
-i {
-	width: 100px;
-}
 
-.test {
-	background: white;
-}
-
-.first {
-	width: 70%;
-	text-align: left;
-	margin-left: 15%;
-	margin-top: 5%;
-	font-size: 25px;
-}
-
-hr {
-	width: 70%;
-}
-
-.second {
-	width: 75%;
-	margin-left: 11%;
-	font-size: 17px;
-}
-
-.nick {
-	margin-left: 5.5%;
-}
-
-.date {
-	float: right;
-	margin-right: 1.5%;
-}
-
-.third {
-	width: 70%;
-	height: 20px;
-	text-align: right;
-	margin-top: 0.5%;
-	margin-left: 14.5%;
-	margin-bottom: 5%;
-	font-size: 17px;
-}
-
-.content {
-	width: 55%;
-	height: 55px;
-	margin-top: 2%;
-	margin-left: 15%;
-	margin-bottom: 10%;
-	font-size: 17px;
-}
-
-.edit_btn {
-	width: 75px;
-	height: 35px;
-	border-color: #569FBF;
-	border-radius: 3px;
-	background: #61A8C4;
-	color: white;
-	font-size: 15px;
-	font-weight: bolder;
-	font-family: 'Montserrat', sans-serif;
-	box-shadow: 0 15px 30px rgba(#e91e63, .36);
-}
-
-.delete_btn {
-	width: 75px;
-	height: 35px;
-	border-color: #569FBF;
-	border-radius: 4px;
-	background: #61A8C4;
-	color: white;
-	font-size: 15px;
-	font-weight: bolder;
-	font-family: 'Montserrat', sans-serif;
-	box-shadow: 0 15px 30px rgba(#e91e63, .36);
-}
-
-button {
-	width: 75px;
-	height: 35px;
-	border-color: #569FBF;
-	border-radius: 4px;
-	background: #61A8C4;
-	color: white;
-	font-size: 15px;
-	font-weight: bolder;
-	font-family: 'Montserrat', sans-serif;
-	box-shadow: 0 15px 30px rgba(#e91e63, .36);
-}
-
-.reply_write {
-	width: 70%;
-	margin-left: 15%;
-	margin-bottom: 2%;
-}
-
-.replylist {
-	margin-left: 15%;
-}
-
-textarea {
-	resize: none;
-	width: 90%;
-}
-
-tr, td {
-	text-align: center;
-}
-
-.replyinfo {
-	width: 80%;
-}
-
-.redit_btn {
-	width: 75px;
-	height: 35px;
-	border-color: #569FBF;
-	border-radius: 4px;
-	background: #61A8C4;
-	color: white;
-	font-size: 15px;
-	font-weight: bolder;
-	font-family: 'Montserrat', sans-serif;
-	box-shadow: 0 15px 30px rgba(#e91e63, .36);
-}
-
-.rdelete_btn {
-	width: 75px;
-	height: 35px;
-	border-color: #569FBF;
-	border-radius: 4px;
-	background: #61A8C4;
-	color: white;
-	font-size: 15px;
-	font-weight: bolder;
-	font-family: 'Montserrat', sans-serif;
-	box-shadow: 0 15px 30px rgba(#e91e63, .36);
-}
-
-.modal {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.modal .bg {
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.6);
-}
-
-.modalBox {
-	position: absolute;
-	background-color: #fff;
-	width: 400px;
-	height: 200px;
-	padding: 15px;
-}
-
-.modalBox button {
-	display: block;
-	width: 80px;
-	margin: 0 auto;
-}
-
-.hidden {
-	display: none;
-}
-</style>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
-	<div class="modal hidden">
-		<div class="bg"></div>
-		<div class="modalBox">
-			<p>내용</p>
-			<input type="button" value="수정"> <input type="button"
-				value="취소" class="closeBtn">
-		</div>
-	</div>
-	<div class="modal">
-		<input type="text" placeholder="작성자명"> <input type="text"
-			placeholder="댓글내용">
-	</div>
-
 	<div class="first">${comm.title }</div>
 	<hr>
 	<div class="second">
@@ -362,25 +173,20 @@ tr, td {
 	</div>
 	<div class="third">
 
-		<i class="bi bi-eyeglasses"></i> ${comm.read_count} <i
-			class="bi bi-chat-dots"></i> ${replyCount }
+		<i class="bi bi-eyeglasses"></i> ${comm.read_count} 
 	</div>
 	<div class="content">
 		<pre>${comm.content }</pre>
-
 		<c:if test="${!empty comm.community_file }">
-			<div>
-				<img
-					src="<%= request.getContextPath() %>/upload/${comm.community_file}"
+				<img src="<%= request.getContextPath() %>/upload/${comm.community_file}"
 					height="200" width="300">
-			</div>
 		</c:if>
 	</div>
-	<div align="center">
-		<input type="button" value="수정" class="edit_btn"
-			onclick="location.href='commupdateform?no=${comm.no}&page=${page}'">
-		<input type="button" value="삭제" class="delete_btn"
-			onclick="location.href='commdelete?no=${comm.no}&page=${page} '">
+	<div align="right" class = "Btn_list">
+		<input type="button" value="수정" class="edit_Btn"
+			onclick="location.href='commupdateform?no=${comm.no}&page=${page}&nick=${comm.nick }'">
+		<input type="button" value="삭제" class="delete_Btn"
+			onclick="location.href='commdelete?no=${comm.no}&page=${page}&nick=${comm.nick } '">
 	</div>
 
 	<div class="reply_write">
@@ -396,26 +202,43 @@ tr, td {
 						placeholder="댓글을 입력해 주세요."></textarea>
 				</p>
 				<div align="right">
-					<span><button type="button" class="btns" id="replyinsert"
+					<span><button type="button" class="reply_Btn" id="replyinsert"
 							class="insert_btn">등 록</button> <i id="counter">0/300자</i> </span>
 				</div>
 			</div>
 		</fieldset>
 	</div>
+	
+	<!-- 댓글 목록 랜더링 -->
 	<div id="replylist" class="replylist"></div>
+	<!-- 모달창 랜더링 -->
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<input type = "button" value = "수정">
+			<input type="text" value = "${reply_no }">
+		</div>
+	</div>
 </body>
 <script>
-const open = () => {
-    document.querySelector(".modal").classList.remove("hidden");
-  }
 
-const close = () => {
-    document.querySelector(".modal").classList.add("hidden");
-  }
+// 모달 버튼과 모달창 가져오기
+var modalBtn = document.getElementById("modalBtn");
+var modal = document.getElementById("myModal");
 
-  document.querySelector(".openBtn").addEventListener("click", open);
-  document.querySelector(".closeBtn").addEventListener("click", close);
-  document.querySelector(".bg").addEventListener("click", close);
+// 모달 버튼을 클릭하면 모달창을 열도록 이벤트 리스너 등록
+function replyedit(reply_no){
+	alert(reply_no);
+modal.style.display = "block";
+};
 
+
+// 모달 닫기 버튼 클릭 시 모달창 닫도록 이벤트 리스너 등록
+var closeBtn = modal.querySelector(".close");
+closeBtn.onclick = function() {
+  modal.style.display = "none";
+};
 </script>
+
+
 </html>

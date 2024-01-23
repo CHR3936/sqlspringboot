@@ -116,9 +116,6 @@ public class commController {
 		
 		commDTO comm = cs.getCommunity(no);
 		
-		//int replyCount = rs.getReplyCount(no);
-		
-		//model.addAttribute("replyCount", replyCount);
 		model.addAttribute("no", no);
 		model.addAttribute("comm", comm);
 		model.addAttribute("page", page);
@@ -163,8 +160,18 @@ public class commController {
 	@RequestMapping("commupdateform")
 	public String commupdateform(@RequestParam("no") int no,
 								 @RequestParam("page") String page,
+								 @RequestParam("nick") String nick,
+								 HttpSession session,
 								 Model model) {
+
+		String snick = (String)session.getAttribute("nick");
+		System.out.println("snick :" + snick);
 		
+		if(snick != nick) {
+			int result = -2;
+			model.addAttribute("result", result);
+			return "comm/result";
+		}
 		
 		commDTO comm = cs.getCommunity(no);
 		
@@ -238,15 +245,25 @@ public class commController {
 		
 	 @RequestMapping("commdelete")
 	 public String commdelete(@ModelAttribute commDTO comm,
-			 				  @RequestParam("page") String page,
+			 				  @RequestParam("page") String page,			 				 
+			 				  HttpSession session,
 			 				  Model model) {
+		
 		 
-		 int result = cs.commDelete(comm.getNo());
+		 String snick = (String)session.getAttribute("nick");
 		 
-		 model.addAttribute("result", result);
-		 model.addAttribute("page", page);
+		 if(comm.getNick().equals(snick)) {
+			 int result = cs.commDelete(comm.getNo());
+			 model.addAttribute("result", result);
+			 model.addAttribute("page", page);
+			 return "redirect:commlist"; 
+	
+		 }else {
+			 int result = -2;
+			 model.addAttribute("result", result);
+			 return "comm/result";
+		 }		 
 				 
-		return "redirect:commlist"; 
 	 }
 		
 
@@ -296,8 +313,4 @@ public class commController {
 		 
 	 }
 	 
-	 @RequestMapping("test")
-	 public String test() {
-		 return "test";
-	 }
 }

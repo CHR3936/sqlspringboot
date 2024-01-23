@@ -28,69 +28,82 @@ public class replyController {
 
 	@Autowired
 	private replyService rs;
-	
+
 	@PostMapping("/replyinsert")
 	@ResponseBody
-	public ResponseEntity<Integer> replyinsert(@RequestBody replyDTO reply){
-		
-		System.out.println("replyinsert 진입");	
-	
-		int result = rs.replyInsert(reply);
-		System.out.println("result : " + result);
-		
-		return new ResponseEntity<>(result, HttpStatus.OK);
+	public ResponseEntity<Integer> replyinsert(@RequestBody replyDTO reply, HttpSession session) {
+
+		System.out.println("replyinsert 진입");
+
+		String snick = (String) session.getAttribute("nick");
+
+		if (snick != null) {
+			int result = rs.replyInsert(reply);
+			System.out.println("result : " + result);
+			return new ResponseEntity<>(result, HttpStatus.OK);
+
+		} else if (snick == null) {
+			int result = -2;
+			return new ResponseEntity<>(result, HttpStatus.OK);
+
+		} else {
+			int result = -1;
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		}
+
 	}
 
-	
 	@GetMapping("/replylist/{no}")
 	@ResponseBody
-	public ResponseEntity<Map<String,Object>>replylist(@PathVariable("no") int no){
-		
+	public ResponseEntity<Map<String, Object>> replylist(@PathVariable("no") int no) {
+
 		System.out.println("replylist 진입");
 		List<replyDTO> replylist = rs.getReplyList(no);
-		System.out.println("replylist:"+replylist);
-		
+		System.out.println("replylist:" + replylist);
+
 		Map map = new HashMap<>();
 		map.put("replylist", replylist);
-		
-		return new ResponseEntity<>(map,HttpStatus.OK);
+
+		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 
 	@PutMapping("/replyupdate/{reply_no}")
 	@ResponseBody
-	public ResponseEntity<Integer> replyupdate(@RequestBody replyDTO reply){
-		
+	public ResponseEntity<Integer> replyupdate(@RequestBody replyDTO reply) {
+
 		int result = rs.replyUpdate(reply.getReply_no());
-	
-		return new ResponseEntity<>(result,HttpStatus.OK);
+
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/replydelete")
 	@ResponseBody
-	public ResponseEntity<Integer> replydelete(@RequestBody replyDTO reply,
-											   HttpSession session){
-		
-		String snick =(String)session.getAttribute("nick");
+	public ResponseEntity<Integer> replydelete(@RequestBody replyDTO reply, HttpSession session) {
+
+		String snick = (String) session.getAttribute("nick");
 		System.out.println(snick);
+		
+		if(snick == null) {
+			int result = -2;
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		}
 		
 		String nick = rs.replySelect(reply.getReply_no());
 		System.out.println(nick);
-		
-		System.out.println("replydelete 진입");	
-		
-		
-		if(snick.equals(nick)) {
+
+		System.out.println("replydelete 진입");
+
+		if (snick.equals(nick)) {
 			int result = rs.replyDelete(reply);
-			System.out.println("result : " + result);			
-		
-		return new ResponseEntity<>(result,HttpStatus.OK);
-		
-		}else {
+			System.out.println("result : " + result);
+
+			return new ResponseEntity<>(result, HttpStatus.OK);
+
+		} else {
 			int result = -1;
-			return new ResponseEntity<>(result,HttpStatus.OK);
+			return new ResponseEntity<>(result, HttpStatus.OK);
 		}
-			
-		
+
 	}
-	
+
 }
