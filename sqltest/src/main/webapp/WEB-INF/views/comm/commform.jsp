@@ -14,10 +14,10 @@
 		<td><input type= "text" name = "nick" value =${sessionScope.nick } readonly="readonly"></td>
 	</tr>
 	<tr><th>제목</th>
-		<td><input type =text name= "title"></td>
+		<td><input type =text name= "title" required="required"></td>
 	</tr>
 	<tr><th>내용</th>
-		<td><textarea cols= 40 row = 5 name = "content" style = "resize :none;"></textarea></td>
+		<td><textarea cols= 40 row = 5 name = "content" style = "resize :none;" required="required"></textarea></td>
 	</tr>
 	 <tr><th>첨부파일</th>
 		<td><input type="file" class ="fileupload" name = "fileupload" ></td>

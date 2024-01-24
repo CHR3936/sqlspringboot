@@ -179,7 +179,7 @@ $(document).ready(function(){
 		<pre>${comm.content }</pre>
 		<c:if test="${!empty comm.community_file }">
 				<img src="<%= request.getContextPath() %>/upload/${comm.community_file}"
-					height="200" width="300">
+				 class="content_img">
 		</c:if>
 	</div>
 	<div align="right" class = "Btn_list">

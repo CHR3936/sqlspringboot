@@ -79,10 +79,16 @@ hr {
 	margin-bottom: 10%;
 	font-size: 15px;
 }
+.content_img{
+	width: 250px;
+	height: 250px;
+	margin-bottom: 10%;
+}
 
 /* 버튼 목록 */
 .Btn_list{
 	margin-right: 20%;
+	margin-top: 30%;
 }
 
 /* 글 수정 버튼 */
