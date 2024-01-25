@@ -13,11 +13,9 @@
 <link href="css/commlist.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>게시판 목록</title>
-<style>
-</style>
+<jsp:include page="../include/header.jsp" />
 </head>
 <body>
-	<jsp:include page="../include/header.jsp" />
 
 	<div id="list">
 		<table style="margin-left: auto; margin-right: auto;">

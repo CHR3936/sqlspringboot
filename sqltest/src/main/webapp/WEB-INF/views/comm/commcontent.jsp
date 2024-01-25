@@ -160,10 +160,10 @@ $(document).ready(function(){
 
 
 </script>
-
+<jsp:include page="../include/header.jsp" />
 </head>
 <body>
-	<jsp:include page="../include/header.jsp" />
+	
 	<div class="first">${comm.title }</div>
 	<hr>
 	<div class="second">
