@@ -49,6 +49,45 @@ $(document).ready(function() {
 
 });
 
+
+
+$(function(){
+	
+	$("#nconfirm").click(function(){
+		
+		if($("#nick").val() == ""){
+			alert("닉네임을 입력 하세요.");
+			$("#nick").focus();
+			return false;
+		}		
+		
+		var nick = $("#nick").val();
+		
+		$.ajax({
+			type: "post",
+			url: "nickcheck",
+			data : {"nick" : nick},
+			success : function(data){
+				if(data == 1){					
+					$("#nickcheck1").html("사용중인 닉네임 입니다.");
+					$("#nickcheck1").attr('color','red');
+				
+				}else{
+					$("#nickcheck1").html("사용 가능한 닉네임 입니다.");
+					$("#nickcheck1").attr('color','green');
+				}
+				
+				
+			}
+		}); 
+	});
+	
+	
+});
+
+
+
+
 	
 	$(function(){
 		$("#myform").submit(function(){

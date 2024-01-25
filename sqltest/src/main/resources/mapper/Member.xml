@@ -5,7 +5,7 @@
 
 	<insert id="memberInsert" parameterType="member">
 		insert into member(nick,id,passwd,admin_role)
-		values(#{nick},#{id},#{passwd},'N')
+		values(#{nick},#{id},#{passwd},'Y')
 	</insert>
 
 	<select id="login" parameterType="String" resultType="member">

@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+/* 제목 */
+.title_Box {
+	width: 50%;
+	height: 45px;
+	border: 1px solid;
+	border-color: #B0BEC5;
+	border-radius: 3px;
+	margin-top: 10%;
+	margin-bottom: 1.5%;
+	margin-left: 20%;
+}
+
+/* 내용 */
+textarea {
+	width: 50%;
+	height: 130px;
+	border: 1px solid;
+	border-color: #B0BEC5;
+	border-radius: 3px;
+	resize: none;
+	margin-bottom: 1.5%;
+	margin-left: 20%;
+}
+
+/* 파일 업로드 */
+.file {
+	width: 50%;
+	border: 1px solid;
+	border-color: #B0BEC5;
+	border-radius: 3px;
+	margin-bottom: 1.5%;
+	margin-left: 20%;
+}
+
+/* 작성 버튼 */
+.write_Btn {
+	width: 60px;
+	height: 30px;
+	border-color: #569FBF;
+	border-radius: 3px;
+	background: #61A8C4;
+	color: white;
+	font-size: 13px;
+	font-weight: bolder;
+	font-family: 'Montserrat', sans-serif;
+	box-shadow: 0 15px 30px rgba(#e91e63, .36);
+	margin-left: 40%;
+}
+
+/* 취소 버튼 */
+.reset_Btn {
+	width: 60px;
+	height: 30px;
+	border-color: #569FBF;
+	border-radius: 3px;
+	background: #61A8C4;
+	color: white;
+	font-size: 13px;
+	font-weight: bolder;
+	font-family: 'Montserrat', sans-serif;
+	box-shadow: 0 15px 30px rgba(#e91e63, .36);
+}

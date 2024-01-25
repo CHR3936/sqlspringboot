@@ -48,7 +48,7 @@
 		</table>
 		<div>
 			<input type="button" value="글쓰기" class="commwrite_Btn"
-				onclick="location.href = 'commform' ">
+				onclick="location.href ='commform?nick=${sessionScope.nick}' ">
 		</div>
 
 	</div>
@@ -88,7 +88,7 @@
 									</c:if></li>
 								<c:if test="${i != page }">
 									<li class="page-item"><a class="page-link"
-										href="commlist?page=${i }">[${i}]</a></li>
+										href="commlist?page=${i }">${i}</a></li>
 								</c:if></li>
 						</c:forEach>
 						</li>

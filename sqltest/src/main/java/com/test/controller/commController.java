@@ -47,7 +47,8 @@ public class commController {
 			  					HttpSession session,
 			  					Model model) throws Exception{
 	  
-	  session.setAttribute("nick", comm.getNick());
+
+		
 	  
 	  String filename = mf.getOriginalFilename(); 
 	  int size = (int) mf.getSize();
