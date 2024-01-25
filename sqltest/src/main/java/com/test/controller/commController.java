@@ -168,18 +168,24 @@ public class commController {
 		String snick = (String)session.getAttribute("nick");
 		System.out.println("snick :" + snick);
 		
-		if(snick != nick) {
+		System.out.println("nick : " + nick);
+	
+		if(snick.equals(nick)) {
+			commDTO comm = cs.getCommunity(no);
+			
+			model.addAttribute("comm", comm);
+			model.addAttribute("page", page);
+			return "comm/commupdateform";
+		
+		}else {
 			int result = -2;
 			model.addAttribute("result", result);
 			return "comm/result";
 		}
 		
-		commDTO comm = cs.getCommunity(no);
 		
-		model.addAttribute("comm", comm);
-		model.addAttribute("page", page);
 		
-		return "comm/commupdateform";
+		
 	}
 	
 	

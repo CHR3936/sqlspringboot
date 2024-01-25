@@ -5,26 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src = "http://code.jquery.com/jquery-latest.js"></script>
 <link href="css/commform.css" rel="stylesheet">
-<jsp:include page="../include/header.jsp" />
-<script>
-$(function(){
-	
-	$("#write").submit(function(){
-		
-		if($("#title1").val()==""){
-			alert("제목을 입력해주세요");
-			return false;
-		}
-	});
-});
-</script>
+<script src="js/commform.js"></script>
 </head>
 <body>
-	<form action="commInsert" method="post" enctype="multipart/form-data" id="write">
+<jsp:include page="../include/header.jsp" />
+	<form action="commInsert" method="post" enctype="multipart/form-data" id="checkform">
 		<div class="form_Line">
 			<div>
-				<input type=text name="title" " class="title_Box" placeholder="제목" id ="title1">
+				<input type=text name="title" " class="title_Box" placeholder="제목" id ="title">
 			</div>
 			<div>
 				<textarea cols=40 row=5 name="content" placeholder="내용" id="content"></textarea>
