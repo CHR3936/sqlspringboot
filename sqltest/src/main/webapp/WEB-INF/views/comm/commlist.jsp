@@ -37,7 +37,7 @@
 								value="${num-1}" /></td>
 						<td><a href="commcontent?no=${t.no}&page=${page}">${t.title }</a>
 						</td>
-						<td>${t.nick }</td>
+						<td><a href="commcontent?no=${t.no}&page=${page}">${t.nick }</a></a></td>
 						<td><fmt:formatDate value="${t.reg_date }"
 								pattern="yyyy-MM-dd" /></td>
 						<td>${t.read_count }</td>

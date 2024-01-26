@@ -79,6 +79,8 @@ hr {
 	margin-bottom: 10%;
 	font-size: 15px;
 }
+
+/* 이미지 */
 .content_img{
 	width: 250px;
 	height: 250px;
@@ -189,3 +191,4 @@ tr, td {
 	font-family: 'Montserrat', sans-serif;
 	box-shadow: 0 15px 30px rgba(#e91e63, .36);
 }
+

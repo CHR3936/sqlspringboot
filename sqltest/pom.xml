@@ -9,11 +9,11 @@
 		<version>2.7.6</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.ootd</groupId>
-	<artifactId>weatherlook</artifactId>
+	<groupId>com.test</groupId>
+	<artifactId>sqltest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>weatherlook</name>
+	<name>sqltest</name>
 	<description>Choongang First Project</description>
 	<properties>
 		<java.version>11</java.version>

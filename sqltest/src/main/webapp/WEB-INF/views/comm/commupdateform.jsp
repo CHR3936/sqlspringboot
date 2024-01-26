@@ -9,6 +9,13 @@
 <link href="css/commform.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/commform.js"></script>
+<style>
+.update_img{
+width: 40%;
+margin-left: 20%;
+}
+
+</style>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
@@ -21,13 +28,15 @@
 			<input type="text" name="content" value="${comm.content }" id="content"
 				class="text_Box">
 		</div>
-		<div class="file">
-			<input type="file" name="fileupload" class="fileupload" value="파일 선택">
+		<div>
 			<c:if test="${!empty comm.community_file }">
 				<img
 					src="<%= request.getContextPath() %>/upload/${comm.community_file}"
-					height="300" width="300">
+					class="update_img">
 		</c:if>
+		</div>
+		<div class="file">
+			<input type="file" name="fileupload" class="fileupload" value="파일 선택">
 		</div>
 
 		<div class="commform_Btn">
