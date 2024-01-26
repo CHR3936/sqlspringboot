@@ -12,7 +12,7 @@ li {
 }
 
 img {
-	width: 100px;
+	width: 300px;
 }
 
 .login_Btn {
@@ -63,7 +63,7 @@ header {
 </head>
 <body>
 	<header>
-		<a href="commlist" class="headlist"><img src="img/Betta.png">Betta</a>
+		<a href="commlist" class="headlist"><img src="img/Betta.png"></a>
 
 		<c:if test="${empty sessionScope.nick }">
 			<button class="login_Btn" onclick="location.href='loginform'">로그인</button>

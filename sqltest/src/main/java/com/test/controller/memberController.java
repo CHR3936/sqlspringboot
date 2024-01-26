@@ -107,7 +107,12 @@ public class memberController {
 		return result;
 	}
 
-
+	
+	@RequestMapping("idfindform")
+	public String idfindform() {
+		
+		return "member/idfindform";
+	}
 
 
 
