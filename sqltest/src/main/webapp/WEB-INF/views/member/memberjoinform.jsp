@@ -50,7 +50,7 @@ $(function(){
 <div class ="container">
 
 
-  <a href = "commlist" class = "head" >community</a>
+  <a href = "commlist" class = "head" >Betta</a>
 
 	<form id = "myform" action="memberjoin" method="post" modelAttribute="member">
 		<div>

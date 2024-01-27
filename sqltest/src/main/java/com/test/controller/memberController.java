@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -97,6 +98,7 @@ public class memberController {
 		return "redirect:commlist";
 	}
 
+	// 닉네임 중복검사
 	@RequestMapping("nickcheck")
 	@ResponseBody
 	public Integer nickcheck(@RequestParam("nick") String nick) {
@@ -107,16 +109,36 @@ public class memberController {
 		return result;
 	}
 
-	
+	// 아이디 찾기 폼
 	@RequestMapping("idfindform")
 	public String idfindform() {
 		
 		return "member/idfindform";
 	}
+	
+	// 아이디 찾기
+	@RequestMapping("idfind")
+	public String idfind(@RequestParam("nick") String nick, Model model) {
+		
+		System.out.println("nick" + nick);
+		memberDTO member = ms.getMember(nick);
+		
+		if(member == null) {
+			int result = -2;
+			model.addAttribute("result", result);
+		}
+		
+		model.addAttribute("member", member);
+				
+		return "member/idresultform";
+	}
 
-
-
-
+	// 비밀번호 찾기 폼
+	@RequestMapping("passfindform")
+	public String passfindform() {
+		
+		return "member/passfindform";
+	}
 
 }	// class end
 

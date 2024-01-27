@@ -17,7 +17,6 @@ public class replyDTO {
     private int reply_no; 
     private String re_content; 
     private String re_nick; 
-    private int re_delete; 
     private Timestamp create_date; 
     private Timestamp modified_date; 
 }

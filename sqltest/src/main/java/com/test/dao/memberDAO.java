@@ -32,6 +32,11 @@ public class memberDAO {
 		return result;
 	}
 
+	public memberDTO getMember(String nick) {
+		// TODO Auto-generated method stub
+		return mse.selectOne("getMember", nick);
+	}
+
 	
 	
 }

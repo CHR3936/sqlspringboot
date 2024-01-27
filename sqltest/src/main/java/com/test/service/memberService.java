@@ -35,6 +35,11 @@ public class memberService {
 		return md.nickCheck(nick);
 	}
 
+	public memberDTO getMember(String nick) {
+		// TODO Auto-generated method stub
+		return md.getMember(nick);
+	}
+
 
 	
 }

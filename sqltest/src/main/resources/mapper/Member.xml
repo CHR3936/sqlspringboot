@@ -15,4 +15,8 @@
 	<select id="nickCheck" parameterType="String" resultType="member">
 		select * from member where nick=#{nick}
 	</select>
+	
+	<select id="getMember" parameterType="String" resultType="member">
+		select * from member where nick=#{nick}
+	</select>
 </mapper>	

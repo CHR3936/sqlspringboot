@@ -30,7 +30,8 @@ th, td {
 
 /* 테이블 상단 */
 .top {
-	background: #569FBF;
+/* 	background: #569FBF; */
+	background : #1285C4;
 	height: 50px;
 	color: white;
 	text-align: center;

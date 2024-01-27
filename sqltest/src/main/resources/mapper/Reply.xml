@@ -4,8 +4,8 @@
 <mapper namespace="Reply">
 
 	<insert id="replyInsert" parameterType="reply">
-	insert into reply(re_no,re_nick,re_content,create_date,re_delete)
-	values(#{re_no},#{re_nick},#{re_content},now(),0)
+	insert into reply(re_no,re_nick,re_content,create_date)
+	values(#{re_no},#{re_nick},#{re_content},now())
 	</insert>
 	
 	<select id="getReplyList" parameterType="int" resultType="reply">

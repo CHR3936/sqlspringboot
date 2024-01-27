@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+/* 베타 이미지 */
+img {
+	width: 130px;
+	height: 130px;
+	margin-left: 45%;
+	margin-top: 150px;
+}
+
+/* 아이디 입력 칸*/
+.nick_text {
+	margin-left: 45%;
+	margin-top: 30px;
+	border-radius: 4px;
+	height: 30px;
+}
+
+/* 아이디 찾기 버튼 */
+.idfind_Btn {
+	background: #1285C4;
+	color: white;
+	display: block;
+	width: 170px;
+	height: 40px;
+	border-radius: 8px;
+	border: none;
+	margin-left: 45%;
+	margin-top: 15px;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: bolder;
+	font-family: 'Montserrat', sans-serif;
+	box-shadow: 0 15px 30px rgba(#e91e63, .36);
+}
+
+/* 아이디 입력값 */
+.nick_result {
+	margin-left: 40%;
+	margin-top: 30px;
+	height: 30px;
+}
+
+/* 비밀번호 찾기 버튼 */
+.passfind_Btn {
+	background: #1285C4;
+	color: white;
+	display: block;
+	width: 170px;
+	height: 40px;
+	border-radius: 8px;
+	border: none;
+	margin-left: 45%;
+	margin-top: 15px;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: bolder;
+	font-family: 'Montserrat', sans-serif;
+	box-shadow: 0 15px 30px rgba(#e91e63, .36);
+}

@@ -5,26 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-img{
-	width: 130px;
-	height: 130px;
-	margin-left: 45%;
-	margin-top: 150px;
-}
-
-.nick_text{
-margin-left: 45%;
-margin-top: 30px;
-border-radius: 4px;
-}
-
-</style>
+<link href="css/idfind.css" rel="stylesheet">
 </head>
 <body>
 <div>
-<img src="img/Betta_original.png">
-<input type="text" placeholder="닉네임" name="nick" class="nick_text">
+<a href="commlist"><img src="img/Betta_original.png"></a>
+<form action="idfind" method="post">
+<input type="text" placeholder="닉네임을 입력해주세요." name="nick" class="nick_text">
+<input type = "submit" value ="아이디 찾기" class = "idfind_Btn"/>
+</form>
 </div>
 </body>
 </html>

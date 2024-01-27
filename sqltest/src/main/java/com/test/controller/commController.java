@@ -109,13 +109,13 @@ public class commController {
 	public String commcontent(@RequestParam("no") int no,
 							  @RequestParam("page") String page,
 							  memberDTO member,
-							  replyDTO reply,
  							  HttpSession session,
 							  Model model) {
 
 		cs.commUpdateCount(no);
 		
 		commDTO comm = cs.getCommunity(no);
+		
 		
 		model.addAttribute("no", no);
 		model.addAttribute("comm", comm);
@@ -320,4 +320,5 @@ public class commController {
 		 
 	 }
 	 
+	
 }

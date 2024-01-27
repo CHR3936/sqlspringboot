@@ -63,7 +63,7 @@ header {
 </head>
 <body>
 	<header>
-		<a href="commlist" class="headlist"><img src="img/Betta.png"></a>
+		<a href="commlist" class="headlist"><img src="img/Betta01.png"></a>
 
 		<c:if test="${empty sessionScope.nick }">
 			<button class="login_Btn" onclick="location.href='loginform'">로그인</button>

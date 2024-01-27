@@ -22,34 +22,6 @@ function countingLength(re_content) {
     document.getElementById('counter').innerText = re_content.value.length + '/300자';
 }
 
-// function replyedit(index) {
-//     alert("수정");
-//     alert(index);
-
-//     // 두 번째 td의 텍스트 내용 가져오기
-//     var txt = $('#replyno_0').text();
-// //    var txt = 'test';
-//     alert("두 번째 td의 내용: " + txt);
-
-//     // 내용을 textarea로 교체하기
-//     $('#replyno_'+index).html("<textarea rows='3' cols='30' id='tt_" + index + "'>" + txt + "</textarea>");
-
-//     // 버튼을 "확인"으로 변경하고 "취소" 버튼 추가하기
-//     $('#btn_' + index).html(
-//         "<input type='button' value='확인' onclick='up(" + index + ")'> " +
-//         "<input type='button' value='취소' onclick='lst()'>"
-//     );
-// }
-
-/* function replyedit(reply_no) {
-	alert(reply_no);
-	
-	window.open("","edit","width=300, height=300");
-	
-	
-} */
-
-
 
 /* 댓글 삭제 */
 function replydelete(no,reply_no){
@@ -97,7 +69,7 @@ function replylist(no){
 					content += "<td id='replyno_'"+index+">"+item.re_content+"</td>";
 					
 					content += "<td>"+formattedDate+"</td>";  // id='edit_'+index
-					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(" + item.reply_no + ")'>";
+					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(" + item.reply_no +','+item.re_content+")'>";
 	 		        content += "<input type =button value = 삭제 class='rdelete_Btn' onclick = 'replydelete("+item.re_no+','+item.reply_no+")'>"+ "</td></tr><br>";
 			    
 	 			});			
@@ -216,7 +188,7 @@ $(document).ready(function(){
 		<div class="modal-content">
 			<span class="close">&times;</span>
 			<input type = "button" value = "수정">
-			<input type="text" value = "${reply_no }">
+			date
 		</div>
 	</div>
 </body>
@@ -227,10 +199,14 @@ var modalBtn = document.getElementById("modalBtn");
 var modal = document.getElementById("myModal");
 
 // 모달 버튼을 클릭하면 모달창을 열도록 이벤트 리스너 등록
-function replyedit(reply_no){
+function replyedit(reply_no,re_content){
 	alert(reply_no);
-modal.style.display = "block";
-};
+	alert(re_content);
+	
+	
+//	 modal.style.display = "block"; 
+ 	
+}
 
 
 // 모달 닫기 버튼 클릭 시 모달창 닫도록 이벤트 리스너 등록

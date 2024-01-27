@@ -13,7 +13,7 @@
 <body>
 <div class="container">
   
-  <a href = "commlist" class = "head" >community</a>
+  <a href = "commlist" class = "head" >Betta</a>
   
   
   <!-- Form -->
@@ -39,7 +39,7 @@
   <div align = "right" class ="low">
   <a href= "memberjoinform" style="text-decoration: none" class = "memberjoin">회원가입</a>
   <a href= "idfindform" style="text-decoration: none" class = "idfind">아이디 찾기</a>
-  <a href="passfindform" style="text-decoration: none" class = "passfind">비밀번호 찾기</a>
+  <a href="passfindform" style="color: black; text-decoration: none" class = "passfind">비밀번호 찾기</a>
   </div>
   
   

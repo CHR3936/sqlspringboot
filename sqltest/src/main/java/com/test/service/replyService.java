@@ -39,5 +39,7 @@ public class replyService {
 		return rd.replySelect(reply_no);
 	}
 
+
+
 	
 }
