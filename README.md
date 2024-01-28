@@ -23,3 +23,12 @@
 
 ## 로그인 페이지
 <img src="https://github.com/CHR3936/sqlspringboot/assets/148535023/e6ec14c8-7a7b-43bc-b608-4856bc57b240">
+
+## 회원가입 페이지
+(https://github.com/CHR3936/sqlspringboot/assets/148535023/cea06c7d-5ae3-4f06-90bd-6663e5b390e9)
+
+## 게시판 목록 페이지
+(https://github.com/CHR3936/sqlspringboot/assets/148535023/b70857a1-5937-4c11-ace1-148a42f66971)
+
+## 게시판 상세내용 페이지
+(https://github.com/CHR3936/sqlspringboot/assets/148535023/37500a6b-a57e-4242-a0a0-20b8d58a6efc)
