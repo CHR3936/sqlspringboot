@@ -4,9 +4,9 @@
 table {
 	border : 1px solid inherit;
 	color: inherit; width : 800px;
-	margin-top : 250px;
+	margin-top : 80px;
 	margin-right : 250px;
-	margin-bottom : 35px;
+	margin-bottom : 20px;
 	width : 800px;
 	border-spacing: 0;
 }
@@ -54,7 +54,7 @@ a {
 	height: 30px;
 	border-color: #569FBF;
 	border-radius: 4px;
-	background: #61A8C4;
+	background: #1285C4;
 	color: white;
 	font-size: 13px;
 	font-weight: bolder;
@@ -66,6 +66,6 @@ a {
 
 /* 검색창 부분 */
 .commsearch{
-	margin-bottom: 5%;
+	margin-bottom: 15px;
 }
 	

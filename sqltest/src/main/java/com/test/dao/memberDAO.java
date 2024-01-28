@@ -37,6 +37,12 @@ public class memberDAO {
 		return mse.selectOne("getMember", nick);
 	}
 
+	public String getPass(String id) {
+		// TODO Auto-generated method stub
+		return mse.selectOne("getMail", id);
+	}
+
+	
 	
 	
 }

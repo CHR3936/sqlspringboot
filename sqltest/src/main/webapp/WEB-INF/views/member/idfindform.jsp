@@ -15,5 +15,9 @@
 <input type = "submit" value ="아이디 찾기" class = "idfind_Btn"/>
 </form>
 </div>
+<div class="footer">
+<a href = "loginform">로그인</a>
+<a href = "passfindform">비밀번호 찾기</a>
+</div>
 </body>
 </html>

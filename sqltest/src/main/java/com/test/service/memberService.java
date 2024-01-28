@@ -40,6 +40,11 @@ public class memberService {
 		return md.getMember(nick);
 	}
 
+	public String getPass(String id) {
+		// TODO Auto-generated method stub
+		return md.getPass(id);
+	}
+
 
 	
 }

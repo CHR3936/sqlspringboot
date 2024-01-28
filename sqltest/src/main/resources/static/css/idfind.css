@@ -58,3 +58,13 @@ img {
 	font-family: 'Montserrat', sans-serif;
 	box-shadow: 0 15px 30px rgba(#e91e63, .36);
 }
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.footer {
+	margin-top: 15px;
+	margin-left: 53%;
+}

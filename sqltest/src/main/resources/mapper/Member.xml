@@ -19,4 +19,10 @@
 	<select id="getMember" parameterType="String" resultType="member">
 		select * from member where nick=#{nick}
 	</select>
+	
+	<select id="getMail" parameterType="String" resultType="member">
+		select * from member where id=#{id}
+	</select>
+	
+
 </mapper>	

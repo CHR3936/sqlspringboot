@@ -99,7 +99,7 @@ hr {
 	height: 30px;
 	border-color: #569FBF;
 	border-radius: 3px;
-	background: #61A8C4;
+	background: #1285C4;
 	color: white;
 	font-size: 13px;
 	font-weight: bolder;
@@ -114,7 +114,7 @@ hr {
 	height: 30px;
 	border-color: #569FBF;
 	border-radius: 4px;
-	background: #61A8C4;
+	background: #1285C4;
 	color: white;
 	font-size: 13px;
 	font-weight: bolder;
@@ -128,7 +128,7 @@ hr {
 	height: 30px;
 	border-color: #569FBF;
 	border-radius: 4px;
-	background: #61A8C4;
+	background: #1285C4;
 	color: white;
 	font-size: 13px;
 	font-weight: bolder;
@@ -157,6 +157,8 @@ textarea {
 /* 댓글 tr,td */
 tr, td {
 	text-align: center;
+	border-color: #1285C4;
+	border: 1px solid;
 }
 
 /* 댓글 fieldset */
@@ -170,7 +172,7 @@ tr, td {
 	height: 30px;
 	border-color: #569FBF;
 	border-radius: 4px;
-	background: #61A8C4;
+	background: #1285C4;
 	color: white;
 	font-size: 13px;
 	font-weight: bolder;
@@ -184,7 +186,7 @@ tr, td {
 	height: 30px;
 	border-color: #569FBF;
 	border-radius: 4px;
-	background: #61A8C4;
+	background: #1285C4;
 	color: white;
 	font-size: 13px;
 	font-weight: bolder;
