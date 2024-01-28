@@ -22,4 +22,4 @@
 ![스크린샷(17)](https://github.com/CHR3936/sqlspringboot/assets/148535023/1b94d608-52d2-4859-a165-edd758f9740e)
 
 ## 로그인 페이지
-<img src="https://github.com/CHR3936/sqlspringboot/assets/148535023/e6ec14c8-7a7b-43bc-b608-4856bc57b240" width="350" heigt="350">
+<img src="https://github.com/CHR3936/sqlspringboot/assets/148535023/e6ec14c8-7a7b-43bc-b608-4856bc57b240">
