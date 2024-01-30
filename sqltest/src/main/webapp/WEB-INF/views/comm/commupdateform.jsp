@@ -42,7 +42,7 @@ margin-left: 20%;
 		<div class="commform_Btn">
 			<input type="submit" value="글 수정" class="write_Btn"> 
 			<input type="button" value="취소" class="reset_Btn"
-				 onclick="location.href='commlist?page=${page}'">
+				 onclick="location.href='commcontent?no=${comm.no}&page=${page }'">
 		</div>
 		<input type="hidden" name="no" value="${comm.no }">
 		<input type="hidden" name="page" value="${page }">

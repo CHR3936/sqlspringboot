@@ -31,6 +31,12 @@ function replydelete(no,reply_no){
 	        'reply_no': reply_no
 	    };
 	
+	var result = confirm("정말 삭제하시겠습니까?");
+	if(result){
+		
+	
+	
+	
 	$.ajax({
 		type : "DELETE",
 		url : "${pageContext.request.contextPath}/reply/replydelete/",
@@ -47,9 +53,8 @@ function replydelete(no,reply_no){
 			}
 			replylist(no);  						// 글삭제후 목록 페이지로 이동
 		}	
-	});	
-	
-	
+	});		
+	}	
 }
 
 /* 댓글 리스트 불러오기 */
@@ -70,7 +75,8 @@ function replylist(no){
 					
 					content += "<td>"+formattedDate+"</td>";  // id='edit_'+index
 					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(" + item.reply_no +','+item.re_content+")'>";
-	 		        content += "<input type =button value = 삭제 class='rdelete_Btn' onclick = 'replydelete("+item.re_no+','+item.reply_no+")'>"+ "</td></tr><br>";
+//					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(\"" + item.reply_no +'\',\''+item.re_content+"\");'>";
+					content += "<input type =button value = 삭제 class='rdelete_Btn' onclick = 'replydelete("+item.re_no+','+item.reply_no+")'>"+ "</td></tr><br>";
 			    
 	 			});			
 				
