@@ -25,5 +25,8 @@
 		select re_nick from reply where reply_no=#{reply_no}
 	</select>
 	
+	<select id="getReplyContent" resultType="String" parameterType="reply">
+		select re_content from reply where reply_no=#{reply_no}
+	</select>
 
 </mapper>	

@@ -67,14 +67,6 @@ public class replyController {
 		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 
-	@PutMapping("/replyupdate/{reply_no}")
-	@ResponseBody
-	public ResponseEntity<Integer> replyupdate(@RequestBody replyDTO reply) {
-
-		int result = rs.replyUpdate(reply.getReply_no());
-
-		return new ResponseEntity<>(result, HttpStatus.OK);
-	}
 
 	@DeleteMapping("/replydelete")
 	@ResponseBody
@@ -105,5 +97,6 @@ public class replyController {
 		}
 
 	}
+	
 
 }

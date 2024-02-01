@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -320,5 +321,18 @@ public class commController {
 		 
 	 }
 	 
-	
+	@RequestMapping("replycontent")
+	@ResponseBody
+	public Integer replycontent(@RequestParam("reply_no") int reply_no, Model model) {
+		
+		int data = 1;
+		System.out.println("reply_no:" + reply_no);
+		
+		String re_content = rs.getReplyContent(reply_no);
+		System.out.println("re_content:" + re_content);
+		
+		model.addAttribute("re_content", re_content);
+		
+		return data;
+	}
 }

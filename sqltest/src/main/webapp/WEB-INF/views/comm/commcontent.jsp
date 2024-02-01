@@ -8,9 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-<link href="css/commcontent.css" rel="stylesheet">
+
 <script>
 /* 댓글 유효성 검사 */
 function countingLength(re_content) {
@@ -74,7 +72,8 @@ function replylist(no){
 					content += "<td id='replyno_'"+index+">"+item.re_content+"</td>";
 					
 					content += "<td>"+formattedDate+"</td>";  // id='edit_'+index
-					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(" + item.reply_no +','+item.re_content+")'>";
+					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(" + item.reply_no + ")'>";
+// 					content += "<td><input type=button id=modalBtn value=수정 class='redit_Btn' onclick = 'replyedit(\""+item.reply_no+"\",\""+item.re_content+"\");'>";
 //					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(\"" + item.reply_no +'\',\''+item.re_content+"\");'>";
 					content += "<input type =button value = 삭제 class='rdelete_Btn' onclick = 'replydelete("+item.re_no+','+item.reply_no+")'>"+ "</td></tr><br>";
 			    
@@ -138,6 +137,9 @@ $(document).ready(function(){
 
 
 </script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link href="css/commcontent.css" rel="stylesheet">
 <jsp:include page="../include/header.jsp" />
 </head>
 <body>
@@ -162,14 +164,14 @@ $(document).ready(function(){
 	</div>
 	<div align="right" class = "Btn_list">
 		<input type="button" value="수정" class="edit_Btn"
-			onclick="location.href='commupdateform?no=${comm.no}&page=${page}&nick=${comm.nick }'">
+			onclick="location.href='commupdateform?no=${comm.no}&page=${page}&nick=${comm.nick}'">
 		<input type="button" value="삭제" class="delete_Btn"
-			onclick="location.href='commdelete?no=${comm.no}&page=${page}&nick=${comm.nick } '">
+			onclick="location.href='commdelete?no=${comm.no}&page=${page}&nick=${comm.nick} '">
 	</div>
 
 	<div class="reply_write">
 		<input type="hidden" value="${sessionScope.nick }" id="nick1">
-		<input type="hidden" value="${comm.no }" id="no1">
+		<input type="hidden" value="${comm.no}" id="no1">
 		<fieldset class="replyinfo">
 			<legend>댓글 입력</legend>
 
@@ -205,13 +207,23 @@ var modalBtn = document.getElementById("modalBtn");
 var modal = document.getElementById("myModal");
 
 // 모달 버튼을 클릭하면 모달창을 열도록 이벤트 리스너 등록
-function replyedit(reply_no,re_content){
+function replyedit(reply_no){
 	alert(reply_no);
-	alert(re_content);
 	
+	$.ajax({
+		url : "replycontent",
+		data : {
+			"reply_no" : reply_no
+		},
+		success : function(data){
+			if(data == 1){
+			modal.style.display = "block"; 
+			}else{
+				alert("수정 권한이 없습니다");
+			}
+		}
+	});
 	
-//	 modal.style.display = "block"; 
- 	
 }
 
 
