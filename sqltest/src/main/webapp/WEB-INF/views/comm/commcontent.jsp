@@ -216,11 +216,9 @@ function replyedit(reply_no){
 			"reply_no" : reply_no
 		},
 		success : function(data){
-			if(data == 1){
+			
 			modal.style.display = "block"; 
-			}else{
-				alert("수정 권한이 없습니다");
-			}
+			
 		}
 	});
 	

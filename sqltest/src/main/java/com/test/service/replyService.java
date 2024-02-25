@@ -39,12 +39,6 @@ public class replyService {
 		return rd.replySelect(reply_no);
 	}
 
-	public String getReplyContent(int reply_no) {
-		// TODO Auto-generated method stub
-		return rd.getReplyContent(reply_no);
-	}
-
-
 
 	
 }

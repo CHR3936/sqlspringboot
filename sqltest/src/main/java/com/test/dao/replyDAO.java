@@ -44,10 +44,6 @@ public class replyDAO {
 	}
 
 
-	public String getReplyContent(int reply_no) {
-		// TODO Auto-generated method stub
-		return rses.selectOne("getReplyContent", reply_no);
-	}
 
 
 

@@ -321,18 +321,4 @@ public class commController {
 		 
 	 }
 	 
-	@RequestMapping("replycontent")
-	@ResponseBody
-	public Integer replycontent(@RequestParam("reply_no") int reply_no, Model model) {
-		
-		int data = 1;
-		System.out.println("reply_no:" + reply_no);
-		
-		String re_content = rs.getReplyContent(reply_no);
-		System.out.println("re_content:" + re_content);
-		
-		model.addAttribute("re_content", re_content);
-		
-		return data;
-	}
 }

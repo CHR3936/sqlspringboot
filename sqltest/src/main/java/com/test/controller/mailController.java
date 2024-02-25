@@ -124,7 +124,7 @@ public class mailController {
 			email.addTo(mail, charSet);
 			email.setFrom(fromEmail, fromName, charSet);
 			email.setSubject(subject);
-			email.setHtmlMsg("<p align = 'center'>Community 가입 인증번호입니다.</p><br>" 
+			email.setHtmlMsg("<p align = 'center'>Betta 비밀번호입니다.</p><br>" 
 					+ "<div align='center'> 인증번호 : " + b + "</div>");
 			email.send();
 		} catch (Exception e) {
