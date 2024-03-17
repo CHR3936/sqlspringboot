@@ -6,71 +6,37 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.modal {
-	display: none; /* 모달창 기본 숨김 */
-	position: fixed;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.4); /* 배경 불투명도 조절 */
-}
-
-/* 모달 내용 스타일 */
-.modal-content {
-	background-color: #fefefe;
-	margin: 15% auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%;
-}
-
-/* 모달 닫기 버튼 스타일 */
-.close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover, .close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-}
+<style>
+   div.replyModal { position:relative; z-index:1; }
+   div.modalBackground { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.8); z-index:-1; display: none; }
+   div.modalContent { position:fixed; top:20%; left:calc(50% - 250px); width:500px; height:250px; padding:20px 10px; background:#fff; border:2px solid #666; }
+   div.modalContent textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:500px; height:200px; }
+   div.modalContent button { font-size:20px; padding:5px 10px; margin:10px 0; background:#fff; border:1px solid #ccc; }
+   div.modalContent button.modal_cancel { margin-left:20px; }
+</style>
 </style>
 </head>
 <body>
-	<input type = "button" id="modalBtn" value="모달" onclick = "replyedit()"/>
+<div class="replyModal">
+ <div class="modalContent">
+  
+  <div>
+   <textarea class="modal_repCon" name="modal_repCon"></textarea>
+  </div>
+  
+  <div>
+   <button type="button" class="modal_modify_btn">수정</button>
+   <button type="button" class="modal_cancel">취소</button>
+  </div>
+  
+ </div>
 
-	<!-- 모달창 -->
-	<div id="myModal" class="modal">
-		<div class="modal-content">
-			<span class="close">&times;</span>
-		</div>
-	</div>
+ <div class="modalBackground"></div>
+ 
+</div>
 </body>
 <script>
-//모달 버튼과 모달창 가져오기
-var modalBtn = document.getElementById("modalBtn");
-var modal = document.getElementById("myModal");
 
-// 모달 버튼을 클릭하면 모달창을 열도록 이벤트 리스너 등록
-function replyedit(){
-	alert("시도");
-	modal.style.display = "block";
-};
-// modalBtn.onclick = function() {
-  
-// };
-
-// 모달 닫기 버튼 클릭 시 모달창 닫도록 이벤트 리스너 등록
-var closeBtn = modal.querySelector(".close");
-closeBtn.onclick = function() {
-  modal.style.display = "none";
-};
 
 </script>
 </html>

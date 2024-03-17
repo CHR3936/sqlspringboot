@@ -321,4 +321,8 @@ public class commController {
 		 
 	 }
 	 
+	 @RequestMapping("test.do")
+	 public String test() {
+		 return "test";
+	 }
 }

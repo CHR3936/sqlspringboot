@@ -72,7 +72,8 @@ function replylist(no){
 					content += "<td id='replyno_'"+index+">"+item.re_content+"</td>";
 					
 					content += "<td>"+formattedDate+"</td>";  // id='edit_'+index
-					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(" + item.reply_no + ")'>";
+//					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(" + item.reply_no + ")'>";
+					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(" + item.reply_no + ','+item.index+")'>";
 // 					content += "<td><input type=button id=modalBtn value=수정 class='redit_Btn' onclick = 'replyedit(\""+item.reply_no+"\",\""+item.re_content+"\");'>";
 //					content += "<td><input type='button' id='modalBtn' value='수정' class='redit_Btn' onclick='replyedit(\"" + item.reply_no +'\',\''+item.re_content+"\");'>";
 					content += "<input type =button value = 삭제 class='rdelete_Btn' onclick = 'replydelete("+item.re_no+','+item.reply_no+")'>"+ "</td></tr><br>";
@@ -191,45 +192,27 @@ $(document).ready(function(){
 	
 	<!-- 댓글 목록 랜더링 -->
 	<div id="replylist" class="replylist"></div>
-	<!-- 모달창 랜더링 -->
-	<div id="myModal" class="modal">
-		<div class="modal-content">
-			<span class="close">&times;</span>
-			<input type = "button" value = "수정">
-			date
-		</div>
-	</div>
 </body>
 <script>
 
-// 모달 버튼과 모달창 가져오기
-var modalBtn = document.getElementById("modalBtn");
-var modal = document.getElementById("myModal");
 
 // 모달 버튼을 클릭하면 모달창을 열도록 이벤트 리스너 등록
 function replyedit(reply_no){
 	alert(reply_no);
-	
 	$.ajax({
 		url : "replycontent",
 		data : {
 			"reply_no" : reply_no
 		},
 		success : function(data){
-			
-			modal.style.display = "block"; 
-			
+						
 		}
 	});
 	
 }
 
 
-// 모달 닫기 버튼 클릭 시 모달창 닫도록 이벤트 리스너 등록
-var closeBtn = modal.querySelector(".close");
-closeBtn.onclick = function() {
-  modal.style.display = "none";
-};
+
 </script>
 
 

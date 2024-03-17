@@ -140,5 +140,12 @@ public class memberController {
 		return "member/passfindform";
 	}
 
+	// 마이페이지
+	@RequestMapping("mypage")
+	public String mypage(HttpSession session) {
+		
+		return "member/mypage";
+	}
+	
 }	// class end
 

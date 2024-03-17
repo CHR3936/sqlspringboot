@@ -10,9 +10,8 @@
 
 
 <script>
-	location.href="commlist"
+	location.href="loginform"
 </script>
-
 
 
 </body>
