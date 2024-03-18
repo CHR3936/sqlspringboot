@@ -5,10 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+img{
+	width : 300px;
+}
+</style>
 </head>
 <body>
+<a href="commlist"><img src="img/Betta01.png"></a>
 <h3>개인정보 수정</h3>
-<h3>비밀번호 재확인</h3>
 <form action="memberedit" method="post" id="editform">
 <div>
 아이디 : ${sessionScope.nick}
